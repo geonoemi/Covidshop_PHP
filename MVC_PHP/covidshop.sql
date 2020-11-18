@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Gép: 127.0.0.1
--- Létrehozás ideje: 2020. Nov 18. 20:40
+-- Létrehozás ideje: 2020. Nov 18. 21:04
 -- Kiszolgáló verziója: 10.4.11-MariaDB
 -- PHP verzió: 7.4.6
 
@@ -96,6 +96,7 @@ CREATE TABLE IF NOT EXISTS `product` (
   `price` int(11) NOT NULL,
   `quantity` int(11) NOT NULL,
   `description` varchar(100) NOT NULL,
+  `picId` int(11) DEFAULT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4;
 
@@ -103,8 +104,8 @@ CREATE TABLE IF NOT EXISTS `product` (
 -- A tábla adatainak kiíratása `product`
 --
 
-INSERT INTO `product` (`id`, `itemName`, `price`, `quantity`, `description`) VALUES
-(1, 'lélegeztetőgép', 300000, 1, 'szipiszupilélegeztetőgép');
+INSERT INTO `product` (`id`, `itemName`, `price`, `quantity`, `description`, `picId`) VALUES
+(1, 'lélegeztetőgép', 300000, 1, 'szipiszupilélegeztetőgép', 1);
 
 --
 -- Megkötések a kiírt táblákhoz
