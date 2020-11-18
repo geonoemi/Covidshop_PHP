@@ -16,7 +16,7 @@ let searchProducts = function() {
                 });
 
 				
-                return results;
+                return results;     
             }
 
             return [];
