@@ -17,13 +17,13 @@
         </div>
         <ul class="app-header-nav-links">
             <li class="nav-item">
-                <a href="index.html">Kezdőlap</a>
+                <a href="index.php">Kezdőlap</a>
             </li>
             <li class="nav-item active">
-                <a href="addproduct.html">Új termék</a>
+                <a href="index.php?c=addProducts">Új termék</a>
 			</li>
             <li class="nav-item">
-                <a href="products.html">Keresés</a>
+                <a href="index.php?c=products">Keresés</a>
             </li>
 			<li id="showCart" class="nav-item nav-item-cart">
                 <img src="shopping-cart.svg">
@@ -44,13 +44,13 @@
     </nav>
 
     <div class="container">
-        <form id="addproduct" method="GET" action="addproduct.html">
+        <form id="addproduct" method="post" action="index.php?c=addProducts">
             <div class="input-wrapper">
                 <label class="text-primary">Termék neve</label>
                 <input class="text-input" type="text" name="name" ><br>
             </div>
 
-            <div class="input-wrapper">
+            <div class="inpt-wrapper">
                 <label class="text-primary">Darabszám</label>
                 <input class="text-input" type="text" name="quantity" ><br>
             </div>
@@ -84,7 +84,7 @@
 
 			<div>
 				<i>
-					Álltalunk előre létrehozott termékek importálásához kérem kattintson 
+					Általunk előre létrehozott termékek importálásához kérem kattintson
 					<span style="color:orange;" id="restore">IDE</span>!(FIGYELEM, az álltalad már létrehozott termékek törlésre kerülnek)
 				</i>
 			</div>

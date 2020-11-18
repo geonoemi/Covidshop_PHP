@@ -20,13 +20,13 @@
         </div>
         <ul class="app-header-nav-links">
             <li class="nav-item">
-                <a href="index.html">Kezdőlap</a>
+                <a href="index.php">Kezdőlap</a>
             </li>
             <li class="nav-item">
-                <a href="addproduct.html">Új termék</a>
+                <a href="index.php?c=addProducts">Új termék</a>
 			</li>
             <li class="nav-item active">
-                <a href="products.html">Keresés</a>
+                <a href="index.php?c=products">Keresés</a>
             </li>
 			<li id="showCart" class="nav-item nav-item-cart">
                 <img src="shopping-cart.svg">
@@ -37,9 +37,9 @@
 				<h2>Kosár</h2>
 			</div>
 			<div id="cartWrapperItems" class="cart-content-wrapper">
-			
+
 			</div>
-			
+
 			<div class="cart-content-wrapper checkout-wrapper">
 				<button id="checkout"> Fizetés! </button>
 			</div>
@@ -57,14 +57,14 @@
 
         <ul id="products"></ul>
     </div>
-	
+
 
     <div class="contact-us-wrapper">
         <a href="mailto:pandemia@citromail.hu">✉️ pandemia@citromail.hu</a>
     </div>
-	
-	
-	
+
+
+
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
     <script src="js/searchProducts.js"></script>
     <script src="js/cart.js"></script>

@@ -1,5 +1,5 @@
-<?php 
+<?php
 
 $VIEWDATA['products'] = $MODEL->getProducts();
-?>
 
+?>
