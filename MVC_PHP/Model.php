@@ -35,7 +35,7 @@ class Model{
 		;}
 
 	function addProduct($name, $quantity, $prodid, $price, $description, $picid) {
-		$sql = "INSERT INTO product (itemName, price, quantity, description) VALUES ('" . $name . "', '" . $price . "', '" . $quantity . "', '" . $description. "', '" . $picid . "');";
+		$sql = "INSERT INTO product (itemName, price, quantity, description, picId) VALUES ('" . $name . "', '" . $price . "', '" . $quantity . "', '" . $description. "', '" . $picid . "');";
 		$this->conn->query($sql);
 
 

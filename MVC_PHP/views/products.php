@@ -76,7 +76,7 @@
               }
               echo "' alt='" . $products["itemName"] . "'>";
               echo "<input id='" . $products["id"] . "' type='number' min='1' max='" . $products["quantity"] . "'>";
-              echo "<button data-prodid='" . $products["itemName"] . $products["id"] . ">Kosárba</button>";
+              echo "<button data-prodid='" . $products["itemName"] ."". $products["id"] . "' > Kosárba </button>";
               echo "</div>";
               echo "</li>";
 
