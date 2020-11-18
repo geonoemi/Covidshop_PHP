@@ -55,13 +55,26 @@
 
         <ul id="products">
 
-		<?php foreach ($VIEWDATA['products'] as $prodName){ ?>
+		<?php
+    foreach ($VIEWDATA['products'] as $products){
+      echo "<li>";
+      echo "<div id='" . $products["id"] . "'>";
+			echo "<span>" . $products["itemName"] . "</span>";
+      echo "<img id='" . $products["id"] . "' alt='" . $products["itemName"] . "' src='";
+      if(!empty($products["picId"])) {
+        echo $products["picId"];
+      }
+      else {
+        echo "https://drive.google.com/uc?id=1c0-ie6crNSqFwqo-pwOgvfC2y1HIoTTp";
+      }
+      echo "' alt='" . $products["itemName"] . "'>";
+      echo "<input id='" . $products["id"] . "' type='number' min='1' max='" . $products["quantity"] . "'>";
+      echo "<button data-prodid='" . $products["itemName"] . $products["id"] . ">Kosárba</button>";
+      echo "</div>";
+      echo "</li>";
 
-			<li>
-				<?php echo $prodName["itemName"]; ?>
-			</li>
-
-		<?php } ?>
+		 }
+     ?>
         </ul>
     </div>
  <div class="contact-us-wrapper">

@@ -1,4 +1,4 @@
-<?php echo $VIEWDATA['products']; ?>
+<!--<?php echo $VIEWDATA['products']; ?>-->
 
 <html>
 
@@ -46,16 +46,44 @@
 		</div>
     </nav>
 
-    <form id="addproduct" method="GET" action="products.html">
+    <form id="addproduct" method="GET" action="index.php">
         <input type="text" name="inpText" value="" placeholder="Pl. cicabajszos szájmaszk">
-
+<!-- gecicsöves megoldás, majd kitalálok rá valami mást, de egyelőre jóvanazúgy-->
+        <input type="hidden" name="c" value="products">
         <input class="btn submit-btn" type="submit" value="Keresés">
     </form>
 
     <div class="container">
-        <h1 id="resList" style="display:none;">Találatok:</h1>
 
-        <ul id="products"></ul>
+          <?php
+          if(isset($_GET["inpText"]) && !empty($_GET["inpText"])) {
+            echo "<h1 id='resList'>Találatok:</h1>";
+
+            echo "<ul id='products'>";
+            if(empty($VIEWDATA['products'])) {
+              echo "<span class='error'>Nem található keresésnek megfelelő termék az adatbázisunkban!</span>";
+            }
+            foreach ($VIEWDATA['products'] as $products){
+              echo "<li>";
+              echo "<div id='" . $products["id"] . "'>";
+        			echo "<span>" . $products["itemName"] . "</span>";
+              echo "<img id='" . $products["id"] . "' alt='" . $products["itemName"] . "' src='";
+              if(!empty($products["picId"])) {
+                echo $products["picId"];
+              }
+              else {
+                echo "https://drive.google.com/uc?id=1c0-ie6crNSqFwqo-pwOgvfC2y1HIoTTp";
+              }
+              echo "' alt='" . $products["itemName"] . "'>";
+              echo "<input id='" . $products["id"] . "' type='number' min='1' max='" . $products["quantity"] . "'>";
+              echo "<button data-prodid='" . $products["itemName"] . $products["id"] . ">Kosárba</button>";
+              echo "</div>";
+              echo "</li>";
+
+        		 }
+        }
+      ?></ul>
+
     </div>
 
 
@@ -66,9 +94,9 @@
 
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-    <script src="js/searchProducts.js"></script>
     <script src="js/cart.js"></script>
-    <script src="js/listing.js">
+    <!--script src="js/searchProducts.js"></script>
+    <script src="js/listing.js"-->
     </script>
 
 </body>

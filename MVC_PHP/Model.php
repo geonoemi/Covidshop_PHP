@@ -29,11 +29,25 @@ class Model{
 		return $products;
 
 	}
-	function getUser() {return array('name' => 'fasz' , );}
-	function addProduct($name, $quantity, $prodid, $price, $description) {
-		$sql = "INSERT INTO product (itemName, price, quantity, description) VALUES ('" . $name . "', '" . $price . "', '" . $quantity . "', '" . $description. "');";
+	/* Ez majd ki lesz javítva, első körben ennyit írtam bele, hogy legyen látszatja */
+	function getUser() {
+		return array('name' => 'Placeholder János' , )
+		;}
+
+	function addProduct($name, $quantity, $prodid, $price, $description, $picid) {
+		$sql = "INSERT INTO product (itemName, price, quantity, description) VALUES ('" . $name . "', '" . $price . "', '" . $quantity . "', '" . $description. "', '" . $picid . "');";
 		$this->conn->query($sql);
 
 
 	}
+	function searchProducts($keyword){
+		$products = array();
+		$sql = "SELECT itemName, price, quantity, description, id FROM product WHERE itemName LIKE '%" . $keyword . "%';";
+		$result = $this->conn->query($sql);
+		while($row = $result->fetch_assoc()) {
+			array_push($products, $row);
+		}
+		return $products;
+	}
+
 }

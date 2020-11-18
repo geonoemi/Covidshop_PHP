@@ -2,10 +2,10 @@
 -- version 5.0.2
 -- https://www.phpmyadmin.net/
 --
--- Gép: 127.0.0.1
--- Létrehozás ideje: 2020. Nov 18. 21:04
--- Kiszolgáló verziója: 10.4.11-MariaDB
--- PHP verzió: 7.4.6
+-- Host: localhost
+-- Generation Time: Nov 18, 2020 at 10:56 PM
+-- Server version: 10.4.14-MariaDB
+-- PHP Version: 7.4.10
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -18,108 +18,169 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Adatbázis: `covidshop`
+-- Database: `covidshop`
 --
-CREATE DATABASE IF NOT EXISTS `covidshop` DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci;
-USE `covidshop`;
 
 -- --------------------------------------------------------
 
 --
--- Tábla szerkezet ehhez a táblához `cart`
+-- Table structure for table `cart`
 --
 
-CREATE TABLE IF NOT EXISTS `cart` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `totalcost` int(11) NOT NULL,
-  PRIMARY KEY (`id`)
+CREATE TABLE `cart` (
+  `id` int(11) NOT NULL,
+  `totalcost` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
 
 --
--- Tábla szerkezet ehhez a táblához `cartitem`
+-- Table structure for table `cartitem`
 --
 
-CREATE TABLE IF NOT EXISTS `cartitem` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
+CREATE TABLE `cartitem` (
+  `id` int(11) NOT NULL,
   `amount` int(11) NOT NULL,
   `totalcost` int(11) NOT NULL,
   `cartId` int(11) DEFAULT NULL,
-  `productId` int(11) DEFAULT NULL,
-  PRIMARY KEY (`id`),
-  KEY `cartId` (`cartId`),
-  KEY `productId` (`productId`)
+  `productId` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
 
 --
--- Tábla szerkezet ehhez a táblához `customer`
+-- Table structure for table `customer`
 --
 
-CREATE TABLE IF NOT EXISTS `customer` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
+CREATE TABLE `customer` (
+  `id` int(11) NOT NULL,
   `firstname` varchar(10) NOT NULL,
   `lastname` varchar(25) NOT NULL,
   `password` varchar(15) NOT NULL,
   `email` varchar(15) NOT NULL,
-  `address` varchar(80) NOT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4;
-
--- --------------------------------------------------------
-
---
--- Tábla szerkezet ehhez a táblához `payment`
---
-
-CREATE TABLE IF NOT EXISTS `payment` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `amount` int(11) NOT NULL,
-  `customerId` int(11) DEFAULT NULL,
-  `cartId` int(11) DEFAULT NULL,
-  PRIMARY KEY (`id`),
-  KEY `customerId` (`customerId`),
-  KEY `cartId` (`cartId`)
+  `address` varchar(80) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
 
 --
--- Tábla szerkezet ehhez a táblához `product`
+-- Table structure for table `payment`
 --
 
-CREATE TABLE IF NOT EXISTS `product` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
+CREATE TABLE `payment` (
+  `id` int(11) NOT NULL,
+  `amount` int(11) NOT NULL,
+  `customerId` int(11) DEFAULT NULL,
+  `cartId` int(11) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `product`
+--
+
+CREATE TABLE `product` (
+  `id` int(11) NOT NULL,
   `itemName` varchar(30) NOT NULL,
   `price` int(11) NOT NULL,
   `quantity` int(11) NOT NULL,
   `description` varchar(100) NOT NULL,
-  `picId` int(11) DEFAULT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4;
+  `picId` tinytext DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- A tábla adatainak kiíratása `product`
+-- Dumping data for table `product`
 --
 
 INSERT INTO `product` (`id`, `itemName`, `price`, `quantity`, `description`, `picId`) VALUES
-(1, 'lélegeztetőgép', 300000, 1, 'szipiszupilélegeztetőgép', 1);
+(1, 'lélegeztetőgép', 300000, 1, 'szipiszupilélegeztetőgép', '1');
 
 --
--- Megkötések a kiírt táblákhoz
+-- Indexes for dumped tables
 --
 
 --
--- Megkötések a táblához `cartitem`
+-- Indexes for table `cart`
+--
+ALTER TABLE `cart`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `cartitem`
+--
+ALTER TABLE `cartitem`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `cartId` (`cartId`),
+  ADD KEY `productId` (`productId`);
+
+--
+-- Indexes for table `customer`
+--
+ALTER TABLE `customer`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `payment`
+--
+ALTER TABLE `payment`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `customerId` (`customerId`),
+  ADD KEY `cartId` (`cartId`);
+
+--
+-- Indexes for table `product`
+--
+ALTER TABLE `product`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- AUTO_INCREMENT for dumped tables
+--
+
+--
+-- AUTO_INCREMENT for table `cart`
+--
+ALTER TABLE `cart`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `cartitem`
+--
+ALTER TABLE `cartitem`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `customer`
+--
+ALTER TABLE `customer`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+
+--
+-- AUTO_INCREMENT for table `payment`
+--
+ALTER TABLE `payment`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `product`
+--
+ALTER TABLE `product`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+
+--
+-- Constraints for dumped tables
+--
+
+--
+-- Constraints for table `cartitem`
 --
 ALTER TABLE `cartitem`
   ADD CONSTRAINT `cartitem_ibfk_1` FOREIGN KEY (`cartId`) REFERENCES `cart` (`id`) ON DELETE SET NULL ON UPDATE CASCADE,
   ADD CONSTRAINT `cartitem_ibfk_2` FOREIGN KEY (`productId`) REFERENCES `product` (`id`) ON DELETE SET NULL ON UPDATE CASCADE;
 
 --
--- Megkötések a táblához `payment`
+-- Constraints for table `payment`
 --
 ALTER TABLE `payment`
   ADD CONSTRAINT `payment_ibfk_1` FOREIGN KEY (`customerId`) REFERENCES `customer` (`id`) ON DELETE SET NULL ON UPDATE CASCADE,
