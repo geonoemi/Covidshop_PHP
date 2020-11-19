@@ -245,7 +245,7 @@ class Model{
 
 		//pw titkosítás
 		$password = md5($password);
-		echo $password;
+		
 		//prepared statement
 		$query = $this->conn->prepare(
 			"SELECT * FROM customer
