@@ -10,7 +10,8 @@
 </head>
 
 <body>
-    <nav class="app-header">
+<?php require_once("views/nav.php");?>
+   <!-- <nav class="app-header">
         <div class="app-header-name">
             <p class="company-name">Pandémia kft. Webshop</p>
             <p class="company-slogan">- A járványügyi segédeszközök szakértõje</p>
@@ -41,7 +42,7 @@
 				<button id="checkout"> Fizetés! </button>
 			</div>
 		</div>
-    </nav>
+    </nav>-->
 
     <div class="container">
         <form id="addproduct" method="post" action="index.php?c=addProducts" enctype="multipart/form-data">

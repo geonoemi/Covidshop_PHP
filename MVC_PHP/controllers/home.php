@@ -7,7 +7,7 @@
 
 $VIEWDATA['products'] = $MODEL->getProducts();
 
-$VIEWDATA['userdata'] =$MODEL->getUser();
+//$VIEWDATA['userdata'] =$MODEL->getUser();
 
 /*[
 	
