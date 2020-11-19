@@ -2,7 +2,7 @@ let listing = function () {
 
 	//termékek tömb Mátétól
 	let productsArray = [];
-		
+
 	if (typeof searchProducts != 'undefined') {
 		productsArray = searchProducts.resultProdArray;
 	} else {
@@ -11,15 +11,15 @@ let listing = function () {
 				return JSON.parse(localStorage.getItem(prodKey));
 			});
 	}
-	
+
 	let i = 0;
 
 	//termékek hozzáadása a székesegyházhoz
 	productsArray.forEach(function (prod) {
-		
+
 		//ha nincs a termékből, átlépjük
 		if (prod.quantity==0) return;
-		
+
 		let ul = $('#products');
 		let li = $('<li></li>');
 		let span = $('<span></span>');
@@ -64,15 +64,15 @@ let listing = function () {
 			if (Number(quantity) > productActual.quantity) {
 				button.disabled;
 				alert("Sajna ennyi nincs belőle :( \nA raktárkészlet jelenleg: "+productActual.quantity+"DB");
-			
+
 			//ha van elég raktáron, kosárba tesszük, input értékét töröljük
 			} else {
 				button.disabled = false;
-								
+
 				cart.addToCart(productActual.prodid, Number(input.val()));
-				
+
 				productActual.quantity=Number(productActual.quantity)-Number(input.val());
-				
+
 				localStorage.setItem(productActual.prodid,JSON.stringify(productActual));
 
 				$(input).val(' ');
@@ -97,7 +97,7 @@ let listing = function () {
 
 			li.append(node);
 			ul.append(li);
-			
+
 		}
 
 

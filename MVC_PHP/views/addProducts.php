@@ -44,7 +44,7 @@
     </nav>
 
     <div class="container">
-        <form id="addproduct" method="post" action="index.php?c=addProducts">
+        <form id="addproduct" method="post" action="index.php?c=addProducts" enctype="multipart/form-data">
             <div class="input-wrapper">
                 <label class="text-primary">Termék neve</label>
                 <input class="text-input" type="text" name="name" ><br>
@@ -69,7 +69,10 @@
                 <label class="text-primary">Termékleírás</label>
                 <textarea name="description" rows="6" ></textarea><br>
             </div>
-
+            <div class="input-wrapper">
+              <label class="text-primary">Kép</label>
+              <input name="picfile" type="file"><br>
+            </div>
             <div class="input-wrapper">
                 <label class="text-primary">
 					Fénykép linkje

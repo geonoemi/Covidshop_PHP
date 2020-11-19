@@ -61,19 +61,14 @@
 
             echo "<ul id='products'>";
             if(empty($VIEWDATA['products'])) {
-              echo "<span class='error'>Nem található keresésnek megfelelő termék az adatbázisunkban!</span>";
+              echo "<span class='error'>Nem található a keresésnek megfelelő termék az adatbázisunkban!</span>";
             }
             foreach ($VIEWDATA['products'] as $products){
               echo "<li>";
               echo "<div id='" . $products["id"] . "'>";
         			echo "<span>" . $products["itemName"] . "</span>";
               echo "<img id='" . $products["id"] . "' alt='" . $products["itemName"] . "' src='";
-              if(!empty($products["picId"])) {
-                echo $products["picId"];
-              }
-              else {
-                echo "https://drive.google.com/uc?id=1c0-ie6crNSqFwqo-pwOgvfC2y1HIoTTp";
-              }
+              echo $products["picId"];
               echo "' alt='" . $products["itemName"] . "'>";
               echo "<input id='" . $products["id"] . "' type='number' min='1' max='" . $products["quantity"] . "'>";
               echo "<button data-prodid='" . $products["itemName"] ."". $products["id"] . "' > Kosárba </button>";

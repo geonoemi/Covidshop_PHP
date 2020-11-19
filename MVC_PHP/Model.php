@@ -42,7 +42,7 @@ class Model{
 	}
 	function searchProducts($keyword){
 		$products = array();
-		$sql = "SELECT itemName, price, quantity, description, id FROM product WHERE itemName LIKE '%" . $keyword . "%';";
+		$sql = "SELECT itemName, price, quantity, description, id, picId FROM product WHERE itemName LIKE '%" . $keyword . "%';";
 		$result = $this->conn->query($sql);
 		while($row = $result->fetch_assoc()) {
 			array_push($products, $row);
