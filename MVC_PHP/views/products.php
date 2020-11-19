@@ -30,22 +30,24 @@
             echo "<h1 id='resList'>Találatok:</h1>";
 
             echo "<ul id='products'>";
-            if(empty($VIEWDATA['products'])) {
-              echo "<span class='error'>Nem található a keresésnek megfelelő termék az adatbázisunkban!</span>";
-            }
-            foreach ($VIEWDATA['products'] as $products){
-              echo "<li>";
-              echo "<div id='" . $products["id"] . "'>";
-        			echo "<span>" . $products["itemName"] . "</span>";
-              echo "<img id='" . $products["id"] . "' alt='" . $products["itemName"] . "' src='";
-              echo $products["picId"];
-              echo "' alt='" . $products["itemName"] . "'>";
-              echo "<input id='" . $products["id"] . "' type='number' min='1' max='" . $products["quantity"] . "'>";
-              echo "<button data-prodid='" . $products["itemName"] ."". $products["id"] . "' > Kosárba </button>";
-              echo "</div>";
-              echo "</li>";
+            if(!empty($VIEWDATA['products'])) {
+              foreach ($VIEWDATA['products'] as $products){
+                echo "<li>";
+                echo "<div id='" . $products["id"] . "'>";
+          			echo "<span>" . $products["itemName"] . "</span>";
+                echo "<img id='" . $products["id"] . "' alt='" . $products["itemName"] . "' src='";
+                echo $products["picId"];
+                echo "' alt='" . $products["itemName"] . "'>";
+                echo "<input id='" . $products["id"] . "' type='number' min='1' max='" . $products["quantity"] . "'>";
+                echo "<button data-prodid='" . $products["itemName"] ."". $products["id"] . "' > Kosárba </button>";
+                echo "</div>";
+                echo "</li>";
 
-        		 }
+          		 }
+            }
+            else echo "<span class='error'>Nem található a keresésnek megfelelő termék az adatbázisunkban!</span>";  
+
+
         }
       ?></ul>
 
