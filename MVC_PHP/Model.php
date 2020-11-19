@@ -20,7 +20,7 @@ class Model{
 			$this->conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_WARNING);
 			//fetch_assoc default fetch módnak
 			$this->conn->setAttribute(PDO::ATTR_DEFAULT_FETCH_MODE, PDO::FETCH_ASSOC);
-		//catch a hibára	
+		//catch a hibára
         }catch(PDOException $e){
             echo "Connection failed " . $e->getMessage();
         }
@@ -55,7 +55,7 @@ class Model{
 		$query = $this->conn->prepare(
 			"SELECT itemName, price, quantity, description, id FROM product;"
 		);
-		//query végrehajtása 
+		//query végrehajtása
 		$query->execute();
 
 		//products tömb benépesítése
@@ -76,7 +76,7 @@ class Model{
 		$query = $this->conn->prepare(
 			$sql
 		);
-		//query végrehajtása 
+		//query végrehajtása
 		$query->execute();
 
 		//result tömb benépesítése
@@ -89,32 +89,32 @@ class Model{
 	}
 
 	//termékek keresése
-	function searchProducts($keyword){
+	function searchProducts($keyword) {
 		//eredmény tömb
 		$products = array();
-<<<<<<< HEAD
+
 		$sql = "SELECT itemName, price, quantity, description, id, picId FROM product WHERE itemName LIKE '%" . $keyword . "%';";
 		$result = $this->conn->query($sql);
-		while($row = $result->fetch_assoc()) {
-=======
+		while($row = $result->fetch()) {
+
 		//prepared statement
 		$query = $this->conn->prepare(
 			"SELECT itemName, price, quantity, description, id FROM product WHERE itemName LIKE '%" . $keyword . "%';"
 		);
 
-		//query végrehajtása 
+		//query végrehajtása
 		$query->execute();
 
 		//products tömb benépesítése
 		while($row = $query->fetch()) {
->>>>>>> 76ea49890d97e33c936e46f293a12c61da9b2695
+
 			array_push($products, $row);
 		}
 
 		//visszatérési érték
 		return $products;
 	}
-
+}
 	//termékek hozzáadása
 	function addProduct($name, $quantity, $prodid, $price, $description, $picid){
 		//prepared statement
@@ -135,7 +135,7 @@ class Model{
 		return $stmt->execute();
 	}
 
-	
+
 
 	//--customer TABLE--
 	//user tábla minden adata
@@ -245,7 +245,7 @@ class Model{
 
 		//pw titkosítás
 		$password = md5($password);
-
+		echo $password;
 		//prepared statement
 		$query = $this->conn->prepare(
 			"SELECT * FROM customer
@@ -263,7 +263,8 @@ class Model{
 		//ha nem akkor hamissal
 		if($query->rowCount()>0){
             return true;
-        }else{
+        }
+		else{
             return false;
         }
 	}

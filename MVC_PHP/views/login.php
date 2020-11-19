@@ -59,7 +59,7 @@
         <div class="row">
             <div class="col-md-6 login-left">
                 <h2>Bejelentkezés</h2>
-                <form action="controllers/login.php" method="post">
+                <form action="index.php?c=login" method="post">
                     <div class="form-group">
                         <label>Felhasználónév</label>
                         <input type="text" name="username" class="form-control" required>
@@ -69,13 +69,13 @@
                         <input type="password" name="password" class="form-control" required>
                     </div>
                     <button type="submit" class="btn btn-danger" name="btnLogin">Login</button>
-                </form> 
+                </form>
             </div>
         </div>
         </div>
     </div>
 
-    
+
  <div class="contact-us-wrapper">
         <a href="mailto:pandemia@citromail.hu">✉️ pandemia@citromail.hu</a>
     </div>

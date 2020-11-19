@@ -1,14 +1,18 @@
 <?php
 //szar
 
+$MODEL->addUser("buzijoska", "csoves");
+include 'views/login.php';
 if(isset($_POST['btnLogin'])){
     $checkUser = $MODEL->checkUserData($_POST['username'], $_POST['password']);
-    if($checkUser){
+  if($checkUser){
         $VIEWDATA['username'] = $_POST['username'];
         $VIEWDATA['password'] = $_POST['password'];
 
-        echo '<script>alert('.$VIEWDATA['username'].' '.$VIEWDATA['password'].')</script>';
+        echo '<script language="javascript">alert("'.$VIEWDATA['username'].' '.$VIEWDATA['password'].'")</script>';
+
+    }
+    else {
+      echo "buzi";
     }
 }
-
-include 'views/login.php';
