@@ -20,7 +20,8 @@ SET time_zone = "+00:00";
 --
 -- Database: `covidshop`
 --
-
+CREATE DATABASE IF NOT EXISTS `covidshop` DEFAULT CHARACTER SET utf8 COLLATE utf8_hungarian_ci;
+USE `covidshop`;
 -- --------------------------------------------------------
 
 --
@@ -94,7 +95,7 @@ CREATE TABLE `product` (
 --
 
 INSERT INTO `product` (`id`, `itemName`, `price`, `quantity`, `description`, `picId`) VALUES
-(1, 'lélegeztetőgép', 300000, 1, 'szipiszupilélegeztetőgép', '1');
+(1, 'lélegeztetőgép', 300000, 1, 'szipiszupilélegeztetőgép', 'https://drive.google.com/uc?id=1c0-ie6crNSqFwqo-pwOgvfC2y1HIoTTp');
 
 --
 -- Indexes for dumped tables
