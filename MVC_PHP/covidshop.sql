@@ -67,7 +67,7 @@ CREATE TABLE `customer` (
 --
 
 INSERT INTO `customer` (`id`, `username`, `firstname`, `lastname`, `password`, `email`, `address`) VALUES
-(2, 'testUser', 'Gobi', 'Hilda', '8b7f89be0bd7050', 'gobi.hilda@toth', '6723 Szeged Otthon utca 1');
+(2, 'testUser', 'Gobi', 'Hilda', '8b7f89be0bd7050edfde2b53fd6d5653', 'gobi.hilda@toth', '6723 Szeged Otthon utca 1');
 
 -- --------------------------------------------------------
 
