@@ -55,11 +55,11 @@ CREATE TABLE `cartitem` (
 CREATE TABLE `customer` (
   `id` int(11) NOT NULL,
   `username` varchar(100) NOT NULL,
-  `firstname` varchar(10) NOT NULL,
-  `lastname` varchar(25) NOT NULL,
-  `password` varchar(15) NOT NULL,
-  `email` varchar(15) NOT NULL,
-  `address` varchar(80) NOT NULL
+  `firstname` varchar(100) NOT NULL,
+  `lastname` varchar(100) NOT NULL,
+  `password` varchar(100) NOT NULL,
+  `email` varchar(100) NOT NULL,
+  `address` varchar(100) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
