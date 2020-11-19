@@ -166,7 +166,7 @@ class Model{
 		);
 
 		//paraméter hozzáadása
-		$query->bindValues(':username', $username);
+		$query->bindParam(':username', $username);
 
 		//lekérdezés lefuttatása
 		$query->execute();
@@ -192,7 +192,7 @@ class Model{
 		);
 
 		//paraméter hozzáadása
-		$query->bindValues(':id', $id);
+		$query->bindParam(':id', $id);
 
 		//lekérdezés lefuttatása
 		$query->execute();
@@ -218,7 +218,7 @@ class Model{
 		);
 
 		//paraméter hozzáadása
-		$query->bindValues($param1, $param2);
+		$query->bindParam($param1, $param2);
 
 		//lekérdezés lefuttatása
 		$query->execute();
@@ -236,10 +236,10 @@ class Model{
 	function checkUserData($username, $password){
 		//eredmény tömb
 		$users = array();
-		
+
 		//pw titkosítás
 		$password = md5($password);
-		
+
 		//prepared statement
 		$query = $this->conn->prepare(
 			"SELECT * FROM customer
@@ -247,8 +247,8 @@ class Model{
 		);
 
 		//paraméter hozzáadása
-		$query->bindValues(':username', $username);
-		$query->bindValues(':password', $password);
+		$query->bindParam(':username', $username);
+		$query->bindParam(':password', $password);
 
 		//lekérdezés lefuttatása
 		$query->execute();
