@@ -236,7 +236,10 @@ class Model{
 	function checkUserData($username, $password){
 		//eredmény tömb
 		$users = array();
-
+		
+		//pw titkosítás
+		$password = md5($password);
+		
 		//prepared statement
 		$query = $this->conn->prepare(
 			"SELECT * FROM customer
@@ -274,7 +277,7 @@ class Model{
 
 			//paraméter hozzáadás
 			$stmt->bindParam(':username', $username);
-			$stmt->bindParam(':password', $password);
+			$stmt->bindParam(':password', md5($password));
 
 			//statement lefuttatása
 			return $stmt->execute();
