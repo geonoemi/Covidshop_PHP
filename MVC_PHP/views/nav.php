@@ -28,9 +28,12 @@ else {
         </li>
         <li class="nav-item">
             <a href="index.php?c=addProducts">Új termék</a>
-  </li>
+        </li>
         <li class="nav-item">
             <a href="index.php?c=products">Keresés</a>
+        </li>
+        <li class="nav-item">
+            <a href="index.php?c=orders">Megrendelések</a>
         </li>
 
   <li id="showCart" class="nav-item nav-item-cart">

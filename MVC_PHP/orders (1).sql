@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Gép: 127.0.0.1
--- Létrehozás ideje: 2020. Nov 20. 16:59
+-- Létrehozás ideje: 2020. Nov 20. 17:34
 -- Kiszolgáló verziója: 10.4.11-MariaDB
 -- PHP verzió: 7.4.6
 
@@ -40,7 +40,9 @@ CREATE TABLE `orders` (
 --
 
 INSERT INTO `orders` (`orderint`, `userid`, `items`, `price`, `date`) VALUES
-(1, 2, 'kesztyű 4, fertőtlenítő 2, lélegeztetőgép 3', 200000, '2020-11-20 16:44:17');
+(1, 2, 'kesztyű 4, fertőtlenítő 2, lélegeztetőgép 3', 200000, '2020-11-20 16:44:17'),
+(2, 1, 'maszk 7, egyéb cuccos 3', 6450, '2020-11-20 17:17:57'),
+(3, 3, 'vírusteszt 1', 60000, '2020-11-20 17:18:53');
 
 --
 -- Indexek a kiírt táblákhoz
@@ -61,7 +63,7 @@ ALTER TABLE `orders`
 -- AUTO_INCREMENT a táblához `orders`
 --
 ALTER TABLE `orders`
-  MODIFY `orderint` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `orderint` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- Megkötések a kiírt táblákhoz

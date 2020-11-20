@@ -288,7 +288,78 @@ class Model{
 			$stmt->bindParam(':password', $password);
 			$stmt->bindParam(':email', $email);
 			//statement lefuttatása
-			$stmt->execute();
+			return $stmt->execute();
 		}
+	}
+
+	//--MEGRENDELÉSEK--
+	//az összes eddigi megrendelést lekérdezi
+	function getAllOrders(){
+		//eredménytömb
+		$orders = array();
+
+		//prepared statement
+		$query = $this->conn->prepare(
+			"SELECT users.username, orders.items, orders.price, orders.date FROM orders
+			INNER JOIN users ON users.id = orders.userid
+			ORDER BY orders.date ASC;"
+		);
+
+		//lekérdezés lefuttatása
+		$query->execute();
+
+		//orders tömb benépesítése
+		while($row = $query->fetch()){
+			array_push($orders,$row);
+		}
+
+		//tömb visszaadása
+		return $orders;
+	}
+
+	//csak egy felhasználó rendelései userid alapján
+	//lehet akár username is ha uniquera van állítva
+	function gerOrdersById($userid){
+		//eredménytömb
+		$orders = array();
+
+		//prepared statement
+		$query = $this->conn->prepare(
+			"SELECT users.username, orders.items, orders.price, orders.date FROM orders
+			INNER JOIN users ON users.id = orders.userid
+			WHERE users.id = :userid
+			ORDER BY orders.date ASC;"
+		);
+
+		//parametrizálás
+		$query->bindParam(':userid', $userid);
+
+		//lekérdezés lefuttatása
+		$query->execute();
+
+		//orders tömb benépesítése
+		while($row = $query->fetch()){
+			array_push($orders,$row);
+		}
+
+		//tömb visszaadása
+		return $orders;
+	}
+
+	//új megrendelés hozzáadása
+	function newOrder($userid, $items, $price){
+		//statement
+		$stmt = $this->conn->prepare(
+			"INSERT INTO orders(userid, items, price)
+			VALUES (:userid, :items, :price);"
+		);
+
+		//paraméterek
+		$stmt->bindParam(':userid', $userid);
+		$stmt->bindParam(':items', $items);
+		$stmt->bindParam(':price', $price);
+
+		//végrehajtás
+		return $stmt->execute();
 	}
 }
