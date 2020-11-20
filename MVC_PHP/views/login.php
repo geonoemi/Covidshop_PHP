@@ -20,10 +20,12 @@
             <p class="company-slogan">- A járványügyi segédeszközök szakértõje</p>
         </div>
         <ul class="app-header-nav-links">
-            <li class="nav-item active">
+            <!--li class="nav-item active">
                 Üdvözöljük, <?php ?>
+            </li-->
+            <li class="nav-item">
+                <a href="index.php?c=login">Bejelentkezés</a>
             </li>
-
             <li class="nav-item active">
                 <a href="index.php">Kezdőlap</a>
             </li>
@@ -33,9 +35,7 @@
             <li class="nav-item">
                 <a href="index.php?c=products">Keresés</a>
             </li>
-            <li class="nav-item">
-                <a href="index.php?c=login">Bejelentkezés</a>
-            </li>
+            
 			<li id="showCart" class="nav-item nav-item-cart">
                 <img src="shopping-cart.svg">
             </li>
