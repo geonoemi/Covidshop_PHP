@@ -1,29 +1,42 @@
-<?php include('controllers/registry.php') ?>
-<!DOCTYPE html>
+
+<!doctype html>
 <html>
+
 <head>
-  <title>Regisztráció</title>
-  <link rel="stylesheet" type="text/css" href="style.css">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kezdolap</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script>
+    </script>
+
+    <link rel="stylesheet" href="css/styles.css">
 </head>
+
 <body>
- 
-	
-  <form method="post" action="controllers/registry.php">
-  	<!--?php include('errors.php'); ?-->
-      <?php  if (count($errors) > 0) : ?>
-        <div class="error">
-            <?php foreach ($errors as $error) : ?>
-            <p><?php echo $error ?></p>
-            <?php endforeach ?>
+<?php include 'views/nav.php'; ?>
+  <div class='container'>
+        <div class='registry-box'>
+        <div class='row'>
+            <div class='col-md-6 login-left'>
+                <h2>Regisztráció</h2>
+                <h3>Ha regisztrálsz nálunk, a vásárlási folyamat gyorsan végrehajtható lesz,
+                 akár több kiszállítási címet is megadhatsz, a megrendelések nyomonkövethetőek lesznek,
+                 és még számos egyéb lehetőség vár rád.</h3>
+
         </div>
-        <?php  endif ?>
+        </div>
+    </div>
+
+  <form method="post" action="index.php?c=registry">
+
   	<div class="input-group">
   	  <label>Username</label>
-  	  <input type="text" name="username" value="<?php echo $username; ?>">
+  	  <input type="text" name="username" value="">
   	</div>
   	<div class="input-group">
   	  <label>Email</label>
-  	  <input type="email" name="email" value="<?php echo $email; ?>">
+  	  <input type="email" name="email" value="">
   	</div>
   	<div class="input-group">
   	  <label>Password</label>
@@ -37,5 +50,6 @@
   	  <button type="submit" class="btn" name="reg_user">Register</button>
   	</div>
   </form>
+</div>
 </body>
 </html>
