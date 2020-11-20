@@ -14,13 +14,13 @@ if(isset($_GET['c'])){ //c stands for controller
 
 	$_CONTROLLERNAME = $_GET['c'];
 	if (file_exists("controllers/".$_CONTROLLERNAME.".php")){
-		
+
 		//controller exists, call it
 		include("controllers/".$_CONTROLLERNAME.".php");
 
 	}else{
-		
-		//controller does not exists, so we call "404 sorry" page 
+
+		//controller does not exists, so we call "404 sorry" page
 		include("views/404.php");
 
 	}
