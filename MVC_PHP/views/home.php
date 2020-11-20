@@ -1,6 +1,6 @@
 <!doctype html>
 <html>
-<!--meg kéne gyógyítani, hogy bejelentkezés előtt és után is működjön a nav link mindenhol, mert bejelentkezés után nem találja őket-->
+
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -19,25 +19,26 @@
             <p class="company-slogan">- A járványügyi segédeszközök szakértõje</p>
         </div>
         <ul class="app-header-nav-links">
-            <li class="nav-item">
-                <a href="index.php?c=login">Bejelentkezés</a>
+           
+            <li class="nav-item active">
+                Üdvözöljük, <?php $username ?>
             </li>
-            <!--li class="nav-item active">
-                Üdvözöljük, <?php ?>
-            </li-->
 
             <li class="nav-item active">
-                <a href="index.php">Kezdőlap</a>
+                <a href="home.php">Kezdőlap</a>
             </li>
             <li class="nav-item">
-                <a href="index.php?c=addProducts">Új termék</a>
+                <a href="../index.php?c=addProducts">Új termék</a>
 			</li>
             <li class="nav-item">
-                <a href="index.php?c=products">Keresés</a>
+                <a href="../index.php?c=products">Keresés</a>
             </li>
             
 			<li id="showCart" class="nav-item nav-item-cart">
                 <img src="shopping-cart.svg">
+            </li>
+            <li class="nav-item">
+                <a href="../index.php">Kijelentkezés</a>
             </li>
         </ul>
 		<div id="cart">
