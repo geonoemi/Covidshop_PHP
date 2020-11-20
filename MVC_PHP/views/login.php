@@ -75,6 +75,29 @@
         </div>
     </div>
 
+    <div class="container">
+        <div class="registry-box">
+        <div class="row">
+            <div class="col-md-6 login-left">
+                <h2>Regisztráció</h2>
+                <h3>Ha regisztrálsz nálunk, a vásárlási folyamat gyorsan végrehajtható lesz,
+                 akár több kiszállítási címet is megadhatsz, a megrendelések nyomonkövethetőek lesznek, 
+                 és még számos egyéb lehetőség vár rád.</h3>
+                <form action="index.php?c=login" method="post">
+                    <div class="form-group">
+                        <label>Felhasználónév</label>
+                        <input type="text" name="username" class="form-control" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Jelszó</label>
+                        <input type="password" name="password" class="form-control" required>
+                    </div>
+                    <button type="submit" class="btn btn-danger" name="btnLogin">Registry</button>
+                </form>
+            </div>
+        </div>
+        </div>
+    </div>
 
  <div class="contact-us-wrapper">
         <a href="mailto:pandemia@citromail.hu">✉️ pandemia@citromail.hu</a>
