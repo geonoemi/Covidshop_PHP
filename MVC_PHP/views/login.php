@@ -83,21 +83,7 @@
                 <h3>Ha regisztrálsz nálunk, a vásárlási folyamat gyorsan végrehajtható lesz,
                  akár több kiszállítási címet is megadhatsz, a megrendelések nyomonkövethetőek lesznek, 
                  és még számos egyéb lehetőség vár rád.</h3>
-                <form action="index.php?c=login" method="post">
-                    <div class="form-group">
-                        <label>Felhasználónév</label>
-                        <input type="text" name="username" class="form-control" required>
-                    </div>
-                    <div class="form-group">
-                        <label>E-mail</label>
-                        <input type="text" name="email" class="form-control" required>
-                    </div>
-                    <div class="form-group">
-                        <label>Jelszó</label>
-                        <input type="password" name="password" class="form-control" required>
-                    </div>
-                    <button type="submit" class="btn btn-danger" name="btnLogin">Registry</button>
-                </form>
+                <?php include("views/registry.php"); ?>
             </div>
         </div>
         </div>
