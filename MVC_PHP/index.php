@@ -1,5 +1,5 @@
-<?php 
-
+<?php
+session_start();
 
 //CREATE MODEL OBJECT FROM MODEL CLASS
 //(we can call it later in other included files)

@@ -7,9 +7,10 @@ if(isset($_POST['btnLogin'])){
 
     $checkUser = $MODEL->checkUserData($_POST['username'], $_POST['password']);
   if($checkUser){
-
-        setcookie("username", $_POST['username'], time() + (86400 * 30), "/");
-        header("Location: index.php"); 
+        
+        $_SESSION["username"] = $_POST['username'];
+        echo $_SESSION["username"];
+        header("Location: index.php");
         exit();
 
     }

@@ -6,11 +6,12 @@
     <ul class="app-header-nav-links">
 
 <?php
-if(isset($_COOKIE["username"])){
-  echo '<li class="nav-item">Üdvözöljük, ';
-  echo $_COOKIE["username"];
-  echo "</li>";
 
+if(isset($_SESSION["username"])){
+  echo '<li>Üdvözöljük, ';
+  echo $_SESSION["username"];
+  echo "</li>";
+  echo "<li class=nav-item><a href='index.php?c=logout'>Kijelentkezés</a></li>";
       }
 else {
   echo '
