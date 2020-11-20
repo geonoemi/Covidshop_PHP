@@ -1,4 +1,4 @@
-<?php include('controllers/server.php') ?>
+<?php include('controllers/reistry.php') ?>
 <!DOCTYPE html>
 <html>
 <head>
