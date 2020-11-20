@@ -119,8 +119,8 @@ class Model{
 	function addProduct($name, $quantity, $prodid, $price, $description, $picid){
 		//prepared statement
 		$stmt = $this->conn->prepare(
-			"INSERT INTO product(itemName, price, quantity, description, picId)
-			VALUES (:name, :quantity, :prodid, :price, :description, :picid);"
+			"INSERT INTO product(itemName, prodId, price, quantity, description, picId)
+			VALUES (:name, :prodid, :price, :quantity, :description, :picid);"
 		);
 
 		//paraméterek hozzáadása a statementhez
