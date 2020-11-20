@@ -89,6 +89,10 @@
                         <input type="text" name="username" class="form-control" required>
                     </div>
                     <div class="form-group">
+                        <label>E-mail</label>
+                        <input type="text" name="email" class="form-control" required>
+                    </div>
+                    <div class="form-group">
                         <label>Jelszó</label>
                         <input type="password" name="password" class="form-control" required>
                     </div>
