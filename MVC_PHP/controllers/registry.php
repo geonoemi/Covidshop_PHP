@@ -1,19 +1,25 @@
 <?php
-include 'views/registry.php';
+session_start();
 
-  if (isset($_POST['reg_user'])) {
-    if($_POST["password_1"]===$_POST["password_2"]){
-  $MODEL->addUser($_POST["username"], $_POST["password_1"], $_POST["email"]);
-  header("Location: index.php?c=login"); 
-  exit();
+// initializing variables
+$username = "";
+$email    = "";
+$errors = array(); 
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> parent of 47e6eaa... simplified register controller, fixed username showing up after login, etc.
 // connect to the database
 $db = mysqli_connect('localhost', 'root', '', 'users');
 
 // REGISTER USER
+<<<<<<< HEAD
 if (isset($_POST['submit'])) {
+=======
+if (isset($_POST['reg_user'])) {
+>>>>>>> parent of 47e6eaa... simplified register controller, fixed username showing up after login, etc.
   // receive all input values from the form
   $username = mysqli_real_escape_string($db, $_POST['username']);
   $email = mysqli_real_escape_string($db, $_POST['email']);
@@ -54,9 +60,11 @@ if (isset($_POST['submit'])) {
   	mysqli_query($db, $query);
   	$_SESSION['username'] = $username;
   	$_SESSION['success'] = "You are now logged in";
+<<<<<<< HEAD
   	header('Location: ../views/home.php');
 >>>>>>> af69ceaf82326c865ad16fcfd854eb8ac9273608
+=======
+  	header('Location: ../index.php');
+>>>>>>> parent of 47e6eaa... simplified register controller, fixed username showing up after login, etc.
   }
-  else echo "<span class='error'>A két jelszó nem egyezik.</span>";
 }
-?>

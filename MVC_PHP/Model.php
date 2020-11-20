@@ -99,7 +99,7 @@ class Model{
 
 		//prepared statement
 		$query = $this->conn->prepare(
-			$sql
+			"SELECT itemName, price, quantity, description, id FROM product WHERE itemName LIKE '%" . $keyword . "%';"
 		);
 
 		//query végrehajtása
@@ -245,10 +245,10 @@ class Model{
 
 		//pw titkosítás
 		$password = md5($password);
-
+		
 		//prepared statement
 		$query = $this->conn->prepare(
-			"SELECT * FROM users
+			"SELECT * FROM customer
 			WHERE username = :username AND password = :password;"
 		);
 
@@ -270,25 +270,24 @@ class Model{
 	}
 
 	//felhasználó regisztrálása
-	function addUser($username, $password, $email){
+	function addUser($username, $password){
 		//először megnézzük, hogy létezik e már a felhasználónév
-		if(count($this->getUserByName($username))>0){
+		if(count($this->getUserByName($username)>0)){
 			//ha már létezik a felhasználónév hamissal térünk vissza
 			return false;
 		}else{
 			//ha nem létezik hozzáadjuk a customer táblához
 			$stmt = $this->conn->prepare(
-				"INSERT INTO users(username, password, email)
-				VALUES (:username, :password, :email);"
+				"INSERT INTO customer(username, password)
+				VALUES (:username, :password);"
 			);
 
 			//paraméter hozzáadás
-			$password = md5($password);
 			$stmt->bindParam(':username', $username);
-			$stmt->bindParam(':password', $password);
-			$stmt->bindParam(':email', $email);
+			$stmt->bindParam(':password', md5($password));
+
 			//statement lefuttatása
-			$stmt->execute();
+			return $stmt->execute();
 		}
 	}
 }

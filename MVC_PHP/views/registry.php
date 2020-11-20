@@ -1,42 +1,29 @@
-
-<!doctype html>
+<?php include('controllers/registry.php') ?>
+<!DOCTYPE html>
 <html>
-
 <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Kezdolap</title>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-    <script>
-    </script>
-
-    <link rel="stylesheet" href="css/styles.css">
+  <title>Regisztráció</title>
+  <link rel="stylesheet" type="text/css" href="style.css">
 </head>
-
 <body>
-<?php include 'views/nav.php'; ?>
-  <div class='container'>
-        <div class='registry-box'>
-        <div class='row'>
-            <div class='col-md-6 login-left'>
-                <h2>Regisztráció</h2>
-                <h3>Ha regisztrálsz nálunk, a vásárlási folyamat gyorsan végrehajtható lesz,
-                 akár több kiszállítási címet is megadhatsz, a megrendelések nyomonkövethetőek lesznek,
-                 és még számos egyéb lehetőség vár rád.</h3>
-
+ 
+	
+  <form method="post" action="controllers/registry.php">
+  	<!--?php include('errors.php'); ?-->
+      <?php  if (count($errors) > 0) : ?>
+        <div class="error">
+            <?php foreach ($errors as $error) : ?>
+            <p><?php echo $error ?></p>
+            <?php endforeach ?>
         </div>
-        </div>
-    </div>
-
-  <form method="post" action="index.php?c=registry">
-
+        <?php  endif ?>
   	<div class="input-group">
   	  <label>Username</label>
-  	  <input type="text" name="username" value="">
+  	  <input type="text" name="username" value="<?php echo $username; ?>">
   	</div>
   	<div class="input-group">
   	  <label>Email</label>
-  	  <input type="email" name="email" value="">
+  	  <input type="email" name="email" value="<?php echo $email; ?>">
   	</div>
   	<div class="input-group">
   	  <label>Password</label>
@@ -50,6 +37,5 @@
   	  <button type="submit" class="btn" name="submit">Register</button>
   	</div>
   </form>
-</div>
 </body>
 </html>
