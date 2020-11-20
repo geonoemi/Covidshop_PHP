@@ -8,7 +8,7 @@
 <body>
  
 	
-  <form method="post" action="register.php">
+  <form method="post" action="controllers/registry.php">
   	<!--?php include('errors.php'); ?-->
       <?php  if (count($errors) > 0) : ?>
         <div class="error">
