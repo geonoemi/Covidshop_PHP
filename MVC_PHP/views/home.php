@@ -13,33 +13,16 @@
 </head>
 
 <body>
-<!doctype html>
-<html>
-
-<head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Kezdolap</title>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-    <script>
-    </script>
-
-    <link rel="stylesheet" href="css/styles.css">
-</head>
-
-<body>
 <nav class="app-header">
         <div class="app-header-name">
             <p class="company-name">Pandémia kft. Webshop</p>
             <p class="company-slogan">- A járványügyi segédeszközök szakértõje</p>
         </div>
         <ul class="app-header-nav-links">
-            <li class="nav-item">
-                <a href="index.php?c=login">Bejelentkezés</a>
+           
+            <li class="nav-item active">
+                Üdvözöljük, <?php $username ?>
             </li>
-            <!--li class="nav-item active">
-                Üdvözöljük, <?php ?>
-            </li-->
 
             <li class="nav-item active">
                 <a href="index.php">Kezdőlap</a>

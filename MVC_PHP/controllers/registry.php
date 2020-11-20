@@ -10,7 +10,7 @@ $errors = array();
 $db = mysqli_connect('localhost', 'root', '', 'users');
 
 // REGISTER USER
-if (isset($_POST['reg_user'])) {
+if (isset($_POST['submit'])) {
   // receive all input values from the form
   $username = mysqli_real_escape_string($db, $_POST['username']);
   $email = mysqli_real_escape_string($db, $_POST['email']);
