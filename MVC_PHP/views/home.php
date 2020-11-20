@@ -25,17 +25,20 @@
             </li>
 
             <li class="nav-item active">
-                <a href="index.php">Kezdőlap</a>
+                <a href="home.php">Kezdőlap</a>
             </li>
             <li class="nav-item">
-                <a href="index.php?c=addProducts">Új termék</a>
+                <a href="../index.php?c=addProducts">Új termék</a>
 			</li>
             <li class="nav-item">
-                <a href="index.php?c=products">Keresés</a>
+                <a href="../index.php?c=products">Keresés</a>
             </li>
             
 			<li id="showCart" class="nav-item nav-item-cart">
                 <img src="shopping-cart.svg">
+            </li>
+            <li class="nav-item">
+                <a href="../index.php">Kijelentkezés</a>
             </li>
         </ul>
 		<div id="cart">
