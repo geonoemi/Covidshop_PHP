@@ -17,7 +17,6 @@
 
     <form id="addproduct" method="GET" action="index.php">
         <input type="text" name="inpText" value="" placeholder="Pl. cicabajszos szájmaszk">
-<!-- gecicsöves megoldás, majd kitalálok rá valami mást, de egyelőre jóvanazúgy-->
         <input type="hidden" name="c" value="products">
         <input class="btn submit-btn" type="submit" value="Keresés">
     </form>
@@ -37,8 +36,8 @@
                 echo "<img id='" . $products["id"] . "' alt='" . $products["itemName"] . "' src='";
                 echo "https://drive.google.com/uc?id=" . $products["picId"];
                 echo "' alt='" . $products["itemName"] . "'>";
-                echo "<input id='" . $products["id"] . "' type='number' min='1' max='" . $products["quantity"] . "'>";
-                echo "<button data-prodid='" . $products["itemName"] ."". $products["id"] . "' > Kosárba </button>";
+                echo "<input id='" . $products["id"] . "' type='number' min='1' value='1' max='" . $products["quantity"] . "'>";
+                echo "<button class='addtocart' data-prodid='" . $products["itemName"] ."". $products["id"] . "' > Kosárba </button>";
                 echo "</div>";
                 echo "</li>";
 
@@ -60,7 +59,8 @@
 
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-    <script src="js/cart.js"></script>
+    <!--script src="js/cart.js"></script>-->
+    <script src="js/carttest.js"></script>
     <!--script src="js/searchProducts.js"></script>
     <script src="js/listing.js"-->
     </script>
