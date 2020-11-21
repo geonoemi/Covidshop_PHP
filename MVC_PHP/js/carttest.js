@@ -33,6 +33,20 @@ document.body.addEventListener('click',function(e){
     cartContainer.style.display="none";
 
 });
+function createCartItem(name, price, quantity, prod) {
+  let wrapper = document.createElement('div');
+  wrapper.setAttribute('data-prodId', prod.prodid);
+  price=Number(price);
+  wrapper.innerHTML = `
+  <h3 class="cart_prodname">${name}</h3>
+  <input type="number" data-quantity="${quantity}" class="cart_quantity" value="${quantity}">
+  <button class="cart_delete">Törlés</button>
+  <span class="cart_fullprice">${price} Ft</span>
+  `;
+
+  return wrapper;
+
+}
 
 
 function bake_cookie(name, value) {
@@ -55,38 +69,46 @@ function addToCart() {
 
   console.log(quantity.value);
   let name  = event.target.parentNode.firstChild.innerHTML;
-
-  if (!isNaN(quantity.value)&& quantity.value>0) {
+  let max = parseInt(quantity.max);
+  let value = parseInt(quantity.value);
+  if (!isNaN(value)&& value>0) {
 
       console.log(name);
       let temp = true;
       for(i = 0; i<cartItems.length; i++) {
           if (cartItems[i]["name"] === name) {
-              let test = parseInt(cartItems[i]["quantity"]) + parseInt(quantity.value);
-              console.log(test);
-              if(parseInt(quantity.value) > parseInt(quantity.max) || test > (parseInt(quantity.max))) {
+              let sum = cartItems[i]["quantity"] + value;
+
+              if(value > max || sum > max) {
                 temp = false;
 
                 alert("Nincs ennyi a készleten.");
               }
               else{
-                cartItems[i]["quantity"] = parseInt(cartItems[i]["quantity"]) + parseInt(quantity.value);
+                cartItems[i]["quantity"] = parseInt(cartItems[i]["quantity"]) + value;
                 temp = false;
                 bake_cookie("cart", cartItems);
 
           }
       }
     }
-      if(temp) {
+      if(temp && !(value > max)) {
         cartItems.push({
-          "quantity" : quantity.value,
+          "quantity" : value,
           "name" : name,
 
         });
         bake_cookie("cart", cartItems);
+
+        //function createCartItem(name, price, quantity, prod)
     }
 
 
+
+  }
+  for (i = 0; i<cartItems.length; i++) {
+    item = createCartItem(cartItems[i]["name"], "1", cartItems[i]["quantity"],  "1");
+    cartWrapper.append(item);
 
   }
 }
