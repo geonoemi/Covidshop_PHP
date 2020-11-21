@@ -35,7 +35,7 @@ document.body.addEventListener('click',function(e){
 });
 function createCartItem(name, price, quantity, prod) {
   let wrapper = document.createElement('div');
-  wrapper.setAttribute('data-prodId', prod.prodid);
+  wrapper.setAttribute('data-prodId', prod);
   price=Number(price);
   wrapper.innerHTML = `
   <h3 class="cart_prodname">${name}</h3>
@@ -102,13 +102,28 @@ function addToCart() {
 
         //function createCartItem(name, price, quantity, prod)
     }
-
-
-
   }
+  let id= document.querySelector(data-prodid);  
+  let price = event.target.parentElement.getElementsByClassName('productPrice')[0];    
   for (i = 0; i<cartItems.length; i++) {
-    item = createCartItem(cartItems[i]["name"], "1", cartItems[i]["quantity"],  "1");
+    item = createCartItem(cartItems[i]["name"], price.innerHTML, cartItems[i]["quantity"],  "1");
     cartWrapper.append(item);
 
   }
 }
+
+
+
+
+
+
+
+
+/*
+let id= document.querySelector(data-prodid);  
+let price = event.target.parentElement.getElementsByClassName('productPrice')[0];         //parseInt(document.getElementsByClassName('productPrice'));
+console.log(price);
+for (i = 0; i<cartItems.length; i++) {
+  item = createCartItem(cartItems[i]["name"], price.innerHTML, cartItems[i]["quantity"],  "1");
+  cartWrapper.append(item);
+*/

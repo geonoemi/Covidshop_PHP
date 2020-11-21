@@ -31,12 +31,12 @@
             if(!empty($VIEWDATA['products'])) {
               foreach ($VIEWDATA['products'] as $products){
                 echo "<li>";
-                echo "<div id='" . $products["id"] . "'>";
+                echo "<div  'class=idClass' id='" . $products["id"] . "'>";
           			echo "<span>" . $products["itemName"] . "</span>";
                 echo "<img id='" . $products["id"] . "' alt='" . $products["itemName"] . "' src='";
                 echo "https://drive.google.com/uc?id=" . $products["picId"];
                 echo "' alt='" . $products["itemName"] . "'>";
-                echo "<span>" . $products["price"] . "</span>";
+                echo "<span class=productPrice>" . $products["price"] . "</span>";
                 echo "<input id='" . $products["id"] . "' type='number' min='1' value='1' max='" . $products["quantity"] . "'>";
                 echo "<button class='addtocart' data-prodid='" . $products["itemName"] ."". $products["id"] . "' > Kosárba </button>";
                 echo "</div>";
