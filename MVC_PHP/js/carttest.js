@@ -1,3 +1,40 @@
+function createCartItem(name, price, quantity, prod) {
+  let wrapper = document.createElement('div');
+  wrapper.setAttribute('data-prodId', prod.prodid);
+  price=Number(price);
+  wrapper.innerHTML = `
+  <h3 class="cart_prodname">${name}</h3>
+  <input type="number" data-quantity="${quantity}" class="cart_quantity" value="${quantity}">
+  <button class="cart_delete">Törlés</button>
+  <span class="cart_fullprice">${price} Ft</span>
+  `;
+
+  return wrapper;
+
+}
+let cartWrapper = document.getElementById('cartWrapperItems');
+let checkoutButton = document.getElementById('checkout');
+let showCartButton = document.getElementById('showCart');
+let cartContainer=document.getElementById('cart');
+showCartButton.addEventListener('click', function () {
+  if (cartContainer.style.display == "none")
+    cartContainer.style.display = 'block';
+  else
+    cartContainer.style.display = 'none';
+});
+document.body.addEventListener('click',function(e){
+  let itsCart=false;
+  e.composedPath().forEach(function(el){
+    if (el.id=="cart" || el.id=="showCart")
+      itsCart=true;
+  });
+
+  if (!itsCart)
+    cartContainer.style.display="none";
+
+});
+
+
 function bake_cookie(name, value) {
   var cookie = [name, '=', JSON.stringify(value), '; path=/; max-age=2100;'].join('');
   document.cookie = cookie;
@@ -25,8 +62,11 @@ function addToCart() {
       let temp = true;
       for(i = 0; i<cartItems.length; i++) {
           if (cartItems[i]["name"] === name) {
-              if(quantity.value > quantity.max) {
+              let test = parseInt(cartItems[i]["quantity"]) + parseInt(quantity.value);
+              console.log(test);
+              if(parseInt(quantity.value) > parseInt(quantity.max) || test > (parseInt(quantity.max))) {
                 temp = false;
+
                 alert("Nincs ennyi a készleten.");
               }
               else{
