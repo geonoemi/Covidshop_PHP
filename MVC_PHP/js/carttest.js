@@ -7,7 +7,7 @@ function read_cookie(name) {
  result && (result = JSON.parse(result[1]));
  return result;
 }
-let cartItems = read_cookie("cart");
+let cartItems = read_cookie("cart")===null ? new Array() : read_cookie("cart");
 let elements = document.getElementsByClassName('addtocart');
 for(i = 0; i<elements.length; i++) {
   elements[i].addEventListener("click", addToCart )
@@ -33,12 +33,11 @@ function addToCart() {
                 cartItems[i]["quantity"] = parseInt(cartItems[i]["quantity"]) + parseInt(quantity.value);
                 temp = false;
                 bake_cookie("cart", cartItems);
-                console.log("?");
+
           }
       }
     }
       if(temp) {
-        console.log("??");
         cartItems.push({
           "quantity" : quantity.value,
           "name" : name,
