@@ -35,7 +35,7 @@
                 echo "<div id='" . $products["id"] . "'>";
           			echo "<span>" . $products["itemName"] . "</span>";
                 echo "<img id='" . $products["id"] . "' alt='" . $products["itemName"] . "' src='";
-                echo $products["picId"];
+                echo "https://drive.google.com/uc?id=" . $products["picId"];
                 echo "' alt='" . $products["itemName"] . "'>";
                 echo "<input id='" . $products["id"] . "' type='number' min='1' max='" . $products["quantity"] . "'>";
                 echo "<button data-prodid='" . $products["itemName"] ."". $products["id"] . "' > Kosárba </button>";

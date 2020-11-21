@@ -53,7 +53,7 @@ class Model{
 		$products = array();
 		//prepared statement
 		$query = $this->conn->prepare(
-			"SELECT itemName, price, quantity, description, id FROM product;"
+			"SELECT itemName, price, quantity, description, id , picId FROM product;"
 		);
 		//query végrehajtása
 		$query->execute();
