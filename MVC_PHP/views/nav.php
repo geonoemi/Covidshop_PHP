@@ -46,10 +46,10 @@ else {
   </div>
   <div id="cartWrapperItems" class="cart-content-wrapper">
 
-  </div>$products.append($row);
+  </div>
 
   <div class="cart-content-wrapper checkout-wrapper">
-    <button id="checkout"> Fizetés! </button>
+    <a href="views/cart.php"><button id="checkout"> Tovább a pénztárhoz </button></a>
   </div>
 </div>
 </nav>

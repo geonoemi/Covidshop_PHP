@@ -1,6 +1,6 @@
 function createCartItem(name, price, quantity, prodid) {
   let wrapper = document.createElement('div');
- // wrapper.setAttribute('data-prodId', prodid);
+  wrapper.setAttribute('data-prodid', prodid);
   price=Number(price);
   wrapper.innerHTML = `
   <h3 class="cart_prodname">${name}</h3>
@@ -10,8 +10,8 @@ function createCartItem(name, price, quantity, prodid) {
   `;
 
   return wrapper;
-
 }
+
 let cartWrapper = document.getElementById('cartWrapperItems');
 let checkoutButton = document.getElementById('checkout');
 let showCartButton = document.getElementById('showCart');
@@ -22,6 +22,7 @@ showCartButton.addEventListener('click', function () {
   else
     cartContainer.style.display = 'none';
 });
+
 document.body.addEventListener('click',function(e){
   let itsCart=false;
   e.composedPath().forEach(function(el){
@@ -31,7 +32,6 @@ document.body.addEventListener('click',function(e){
 
   if (!itsCart)
     cartContainer.style.display="none";
-
 });
 
 
@@ -40,11 +40,13 @@ function bake_cookie(name, value) {
   var cookie = [name, '=', JSON.stringify(value), '; path=/; max-age=2100;'].join('');
   document.cookie = cookie;
 }
+
 function read_cookie(name) {
  var result = document.cookie.match(new RegExp(name + '=([^;]+)'));
  result && (result = JSON.parse(result[1]));
  return result;
 }
+
 let cartItems = read_cookie("cart")===null ? new Array() : read_cookie("cart");
 let elements = document.getElementsByClassName('addtocart');
 for(i = 0; i<elements.length; i++) {
@@ -54,19 +56,14 @@ for(i = 0; i<elements.length; i++) {
 function addToCart() {
   let quantity =  event.target.previousSibling;
   let prodid=event.target.parentNode.lastChild.getAttribute("data-prodid");
-  console.log("prodid="+prodid);
-  console.log("quantity="+quantity.value);
   let price = event.target.parentElement.getElementsByClassName('productPrice')[0];//[0];
   let id=parseInt(event.target.parentNode.getAttribute('id'));//[0]);
-  console.log("id="+id);
   let name  = event.target.parentNode.firstChild.innerHTML;
-  console.log("name="+name);
   let max = parseInt(quantity.max);
   let value = parseInt(quantity.value);
 
   if (!isNaN(value) && value>0) {
 
-      console.log("név="+name);
       let temp = true;
       for(i = 0; i<cartItems.length; i++) {
           if (cartItems[i]["name"] === name) {
@@ -81,7 +78,6 @@ function addToCart() {
                 cartItems[i]["quantity"] = parseInt(cartItems[i]["quantity"]) + value;
                 temp = false;
                 bake_cookie("cart", cartItems);
-
           }
       }
     }
@@ -93,19 +89,58 @@ function addToCart() {
           "prodid" : prodid,
         });
         bake_cookie("cart", cartItems);
-
-        //function createCartItem(name, price, quantity, prod)
     }
   }
-  //let id= document.querySelector(data-prodid);  
       
   for (i = 0; i<cartItems.length; i++) {
-    item = createCartItem(cartItems[i]["name"], price.innerHTML, cartItems[i]["quantity"],  prodid);
+    item = createCartItem(cartItems[i]["name"], price.innerHTML*cartItems[i]["quantity"], cartItems[i]["quantity"],  prodid);
+    if(cartItems.includes(item)){
+      console.log("cartItems[i]:"+cartItems[i]["name"]);
+      console.log("bip!");
+    }else{
     cartWrapper.append(item);
-
+    }
+    //changeQuantity();
+    //deleteItem();
   }
+
+
+  /* törlés bugos
+  function deleteItem(item,prodid){
+    document.querySelector(`div[data-prodid="${prodid}"] .cart_delete`).addEventListener('click', function () {
+      removeFromCart(item.getAttribute(prodid));
+      item.remove();
+    });
+  }
+  function removeFromCart(id, decreaseVal) {
+		if (cartItems[id]) {
+			cartItems[id] = cartItems[id] - decreaseVal;
+			if (cartItems[id] < 0)
+				delete cartItems[id];
+		}
+  }*/
+
+
+  /*mennyiségváltoztatás kosárban bugos
+  let cartItemQuantity= document.querySelector(`div[data-prodid="${prodid}"] .cart_quantity`);
+  cartItemQuantity.addEventListener('change', function () {
+    let quantityValue = cartItemQuantity.value;
+    console.log(quantityValue);
+    price=price*quantityValue;
+  });*/
+
+
+
 }
 
+//document.getElementBaClassName(".cart_delete").addEventListener("click", function(){
+ // let deleteButton=document.getElementsByClassName("cart_delete");
+//function deleteFromCart(){
+  //for (i = 0; i<cartItems.length; i++) {
+    
+ // }
+//};
+//deleteFromCart();
 
 
 
