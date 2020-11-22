@@ -1,6 +1,6 @@
-function createCartItem(name, price, quantity, prod) {
+function createCartItem(name, price, quantity, prodid) {
   let wrapper = document.createElement('div');
-  wrapper.setAttribute('data-prodId', prod.prodid);
+ // wrapper.setAttribute('data-prodId', prodid);
   price=Number(price);
   wrapper.innerHTML = `
   <h3 class="cart_prodname">${name}</h3>
@@ -33,20 +33,7 @@ document.body.addEventListener('click',function(e){
     cartContainer.style.display="none";
 
 });
-function createCartItem(name, price, quantity, prod) {
-  let wrapper = document.createElement('div');
-  wrapper.setAttribute('data-prodId', prod);
-  price=Number(price);
-  wrapper.innerHTML = `
-  <h3 class="cart_prodname">${name}</h3>
-  <input type="number" data-quantity="${quantity}" class="cart_quantity" value="${quantity}">
-  <button class="cart_delete">Törlés</button>
-  <span class="cart_fullprice">${price} Ft</span>
-  `;
 
-  return wrapper;
-
-}
 
 
 function bake_cookie(name, value) {
@@ -66,14 +53,20 @@ for(i = 0; i<elements.length; i++) {
 
 function addToCart() {
   let quantity =  event.target.previousSibling;
-
-  console.log(quantity.value);
+  let prodid=event.target.parentNode.lastChild.getAttribute("data-prodid");
+  console.log("prodid="+prodid);
+  console.log("quantity="+quantity.value);
+  let price = event.target.parentElement.getElementsByClassName('productPrice')[0];//[0];
+  let id=parseInt(event.target.parentNode.getAttribute('id'));//[0]);
+  console.log("id="+id);
   let name  = event.target.parentNode.firstChild.innerHTML;
+  console.log("name="+name);
   let max = parseInt(quantity.max);
   let value = parseInt(quantity.value);
-  if (!isNaN(value)&& value>0) {
 
-      console.log(name);
+  if (!isNaN(value) && value>0) {
+
+      console.log("név="+name);
       let temp = true;
       for(i = 0; i<cartItems.length; i++) {
           if (cartItems[i]["name"] === name) {
@@ -96,17 +89,18 @@ function addToCart() {
         cartItems.push({
           "quantity" : value,
           "name" : name,
-
+          "id" : id,
+          "prodid" : prodid,
         });
         bake_cookie("cart", cartItems);
 
         //function createCartItem(name, price, quantity, prod)
     }
   }
-  let id= document.querySelector(data-prodid);  
-  let price = event.target.parentElement.getElementsByClassName('productPrice')[0];    
+  //let id= document.querySelector(data-prodid);  
+      
   for (i = 0; i<cartItems.length; i++) {
-    item = createCartItem(cartItems[i]["name"], price.innerHTML, cartItems[i]["quantity"],  "1");
+    item = createCartItem(cartItems[i]["name"], price.innerHTML, cartItems[i]["quantity"],  prodid);
     cartWrapper.append(item);
 
   }
