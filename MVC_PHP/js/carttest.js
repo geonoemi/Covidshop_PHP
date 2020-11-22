@@ -1,4 +1,4 @@
-function createCartItem(name, price, quantity, prodid) {
+/*function createCartItem(name, price, quantity, prodid) {
   let wrapper = document.createElement('div');
   wrapper.setAttribute('data-prodid', prodid);
   price=Number(price);
@@ -9,7 +9,23 @@ function createCartItem(name, price, quantity, prodid) {
   <span class="cart_fullprice">${price} Ft</span>
   `;
 
+
   return wrapper;
+  
+}*/
+
+function createCartItem(name, price, quantity, prodid) {
+  let wrapper = document.createElement('div');
+  wrapper.setAttribute('data-prodid', prodid);
+  price=Number(price);
+  wrapper.innerHTML = `
+  <h3 class="cart_prodname">${name}</h3>
+  <input id="cartitem-${prodid}" type="number" data-quantity="${quantity}" class="cart_quantity" value="${quantity}">
+  <button id="removeButton" class="cart_delete">Törlés</button>
+  <span id="spanId" class="cart_fullprice">${price} Ft</span>
+  `;
+  return wrapper;
+  
 }
 
 let cartWrapper = document.getElementById('cartWrapperItems');
@@ -56,11 +72,13 @@ for(i = 0; i<elements.length; i++) {
 function addToCart() {
   let quantity =  event.target.previousSibling;
   let prodid=event.target.parentNode.lastChild.getAttribute("data-prodid");
-  let price = event.target.parentElement.getElementsByClassName('productPrice')[0];//[0];
-  let id=parseInt(event.target.parentNode.getAttribute('id'));//[0]);
+  let price = event.target.parentElement.getElementsByClassName('productPrice')[0];
+  let id=parseInt(event.target.parentNode.getAttribute('id'));
   let name  = event.target.parentNode.firstChild.innerHTML;
   let max = parseInt(quantity.max);
   let value = parseInt(quantity.value);
+
+  
 
   if (!isNaN(value) && value>0) {
 
@@ -93,18 +111,39 @@ function addToCart() {
   }
       
   for (i = 0; i<cartItems.length; i++) {
+    //price=price.innerHTML*cartItems[i]["quantity"];
     item = createCartItem(cartItems[i]["name"], price.innerHTML*cartItems[i]["quantity"], cartItems[i]["quantity"],  prodid);
     if(cartItems.includes(item)){
       console.log("cartItems[i]:"+cartItems[i]["name"]);
       console.log("bip!");
     }else{
-    cartWrapper.append(item);
+      cartWrapper.append(item);
     }
-    //changeQuantity();
-    //deleteItem();
+    let removeButton=document.getElementById("removeButton");
+    removeButton.addEventListener("click", function(){
+    cartItems.shift(cartItems[i]);
+    cartWrapper.remove(item);  //mindet törli
+
+  });
   }
 
+  let cartItemQuantity=document.getElementById('cartitem-'+prodid);
+  cartItemQuantity.addEventListener('change', function () {
+    price=price.innerHTML*parseInt(this.value);
+    price.innerHTML=price;
+    console.log(price);
+    let priceSpan=document.getElementById("spanId");
+    priceSpan.innerHTML=price;//csak 1x működik,aztán NaN
+  });
 
+  
+  
+}
+
+//document.getElementById('cartitem-'+prodid).value;
+ 
+
+  
   /* törlés bugos
   function deleteItem(item,prodid){
     document.querySelector(`div[data-prodid="${prodid}"] .cart_delete`).addEventListener('click', function () {
@@ -121,17 +160,10 @@ function addToCart() {
   }*/
 
 
-  /*mennyiségváltoztatás kosárban bugos
-  let cartItemQuantity= document.querySelector(`div[data-prodid="${prodid}"] .cart_quantity`);
-  cartItemQuantity.addEventListener('change', function () {
-    let quantityValue = cartItemQuantity.value;
-    console.log(quantityValue);
-    price=price*quantityValue;
-  });*/
 
 
 
-}
+
 
 //document.getElementBaClassName(".cart_delete").addEventListener("click", function(){
  // let deleteButton=document.getElementsByClassName("cart_delete");
@@ -147,12 +179,3 @@ function addToCart() {
 
 
 
-
-/*
-let id= document.querySelector(data-prodid);  
-let price = event.target.parentElement.getElementsByClassName('productPrice')[0];         //parseInt(document.getElementsByClassName('productPrice'));
-console.log(price);
-for (i = 0; i<cartItems.length; i++) {
-  item = createCartItem(cartItems[i]["name"], price.innerHTML, cartItems[i]["quantity"],  "1");
-  cartWrapper.append(item);
-*/
