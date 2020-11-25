@@ -9,7 +9,7 @@ class Model{
 		$host = "localhost";
 		$username = "root";
 		$password = "";
-		$dbname = "covidshop";
+		$dbname = "covidshopuj";
 
 		//try-catch blokk
 		try{
@@ -53,7 +53,8 @@ class Model{
 		$products = array();
 		//prepared statement
 		$query = $this->conn->prepare(
-			"SELECT itemName, price, quantity, description, id , picId FROM product;"
+			"SELECT itemName, price, quantity, description, id , picId FROM product
+			WHERE quantity > 0;"
 		);
 		//query végrehajtása
 		$query->execute();
@@ -187,29 +188,26 @@ class Model{
 	}
 
 	//felhasználó lekérése id alapján
-	function getUserById($id){
-		//eredmény tömb
-		$users = array();
+	function getUserId($username){
+		//eredmény
+		$userid;
 
 		//prepared statement
 		$query = $this->conn->prepare(
-			"SELECT * FROM customer
-			WHERE id = :id;"
+			"SELECT id FROM users
+			WHERE username = :username;"
 		);
 
 		//paraméter hozzáadása
-		$query->bindParam(':id', $id);
+		$query->bindParam(':username', $username);
 
 		//lekérdezés lefuttatása
 		$query->execute();
 
-		//users tömb benépesítése
-		while($row = $query->fetch()){
-			array_push($users,$row);
-		}
+		$userid = $query->fetch();
 
-		//tömb visszaadása
-		return $users;
+		//userid visszaadása
+		return $userid;
 	}
 
 	//ezt a kettőt is meg lehet csinálni generikusra, mert csak egy paramétere van mindkettőnek
@@ -269,6 +267,26 @@ class Model{
         }
 	}
 
+	function isAdmin($username){
+		//prepared statement
+		$query = $this->conn->prepare(
+			"SELECT * FROM users
+			WHERE username = :username AND isadmin = 1;"
+		);
+
+		$query->bindParam(':username', $username);
+
+		//eredmény és leffutatás
+		$query->execute();
+
+		if($query->rowCount()>0){
+            return true;
+        }
+		else{
+            return false;
+        }
+	}
+
 	//felhasználó regisztrálása
 	function addUser($username, $password, $email){
 		//először megnézzük, hogy létezik e már a felhasználónév
@@ -290,6 +308,107 @@ class Model{
 			//statement lefuttatása
 			return $stmt->execute();
 		}
+	}
+
+	//jelszó változtatása
+	function changePw($userid, $password){
+		//prepared statement
+		$stmt = $this->conn->prepare(
+			"UPDATE users SET password=:password
+			WHERE id=:userid;"
+		);
+
+		//pw titkosítás
+		$password = md5($password);
+		//paraméterek hozzáadása
+		$stmt->bindParam(':password', $password);
+		$stmt->bindParam(':userid', $userid);
+
+		//leffutatás
+		return $stmt->execute();
+	}
+
+	//email megváltoztatása
+	function changeEmail($userid, $email){
+		//prepared statement
+		$stmt = $this->conn->prepare(
+			"UPDATE users SET email=:email
+			WHERE id=:userid;"
+		);
+
+		//paraméterek hozzáadása
+		$stmt->bindParam(':email', $email);
+		$stmt->bindParam(':userid', $userid);
+
+		//leffutatás
+		return $stmt->execute();
+	}
+
+	//mindkettő megváltoztatása
+	function changePwAndEmail($userid, $password, $email){
+		//prepared statement
+		$stmt = $this->conn->prepare(
+			"UPDATE users SET email=:email, password=:password
+			WHERE id=:userid;"
+		);
+
+		//$userid = (int)$userid;
+		//pw titkosítás
+		$password = md5($password);
+		//paraméterek hozzáadása
+		$stmt->bindParam(':email', $email);
+		$stmt->bindParam(':password', $password);
+		$stmt->bindParam(':userid', $userid);
+
+		//leffutatás
+		return $stmt->execute();
+	}
+
+	//--LAKCÍMEK--
+	//lekérdezi egy felhasználó jelenlegi lakcímeit
+	function getAddress($userid){
+		//eredménytömb
+		$addressArr = array();
+
+		//prepared statement
+		$query = $this->conn->prepare(
+			"SELECT postalcode, city, street, number, other FROM address
+			WHERE userid = :userid;"
+		);
+
+		//paraméter hozzáadása
+		$query->bindParam(':userid', $userid);
+
+		//lefuttatás
+		$query->execute();
+
+		//ha van létező lakcím belerakjuk a tömbbe
+		if($query->rowCount()>0){
+			while($row=$query->fetch()){
+				array_push($addressArr, $row);
+			}
+			return $addressArr;
+		}//ha nincs akkor hamissal térünk vissza
+		else return false;	
+	}
+
+	//lakcím hozzáadása
+	function addNewAddress($userid, $postalcode, $city, $street, $number){
+		//prepared statements
+		$query = $this->conn->prepare(
+			"INSERT INTO address(userid, postalcode, city, street, number)
+			VALUES (:userid, :postalcode, :city, :street, :number);"
+		);
+
+		//paraméter hozzáadás
+		$query->bindParam(':userid', $userid);
+		$query->bindParam(':postalcode', $postalcode);
+		$query->bindParam(':city', $city);
+		$query->bindParam(':street', $street);
+		$query->bindParam(':number', $number);
+
+		//lefuttatás
+		return $query->execute();
 	}
 
 	//--MEGRENDELÉSEK--
@@ -319,7 +438,7 @@ class Model{
 
 	//csak egy felhasználó rendelései userid alapján
 	//lehet akár username is ha uniquera van állítva
-	function gerOrdersById($userid){
+	function getOrdersByUsername($username){
 		//eredménytömb
 		$orders = array();
 
@@ -327,12 +446,12 @@ class Model{
 		$query = $this->conn->prepare(
 			"SELECT users.username, orders.items, orders.price, orders.date FROM orders
 			INNER JOIN users ON users.id = orders.userid
-			WHERE users.id = :userid
+			WHERE users.username = :username
 			ORDER BY orders.date ASC;"
 		);
 
 		//parametrizálás
-		$query->bindParam(':userid', $userid);
+		$query->bindParam(':username', $username);
 
 		//lekérdezés lefuttatása
 		$query->execute();
