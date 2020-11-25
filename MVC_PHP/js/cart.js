@@ -4,7 +4,7 @@ window.addEventListener('DOMContentLoaded', (event) => {
   let checkoutButton = document.getElementById('checkout');
   let showCartButton = document.getElementById('showCart');
   let cartContainer=document.getElementById('cart');
-  let itsCart=false;
+
   showCartButton.addEventListener('click', function () {
 
     if (cartContainer.style.display == "none") {
@@ -17,6 +17,7 @@ window.addEventListener('DOMContentLoaded', (event) => {
 
   });
   document.body.addEventListener('click',function(e){
+    let itsCart=false;
     e.composedPath().forEach(function(el){
       if (el.id=="cart" || el.id=="showCart")
         itsCart=true;
@@ -32,11 +33,11 @@ window.addEventListener('DOMContentLoaded', (event) => {
     price=Number(price);
     wrapper.innerHTML = `
     <h3 class="cart_prodname">${name}</h3>
-    <input type="number" data-quantity="${quantity}" class="cart_quantity" value="${quantity}" max="${max}">
+    <input type="number" min="1" data-quantity="${quantity}" class="cart_quantity" value="${quantity}" max="${max}">
     <button class="cart_delete">Törlés</button>
     <span class="cart_fullprice">${price} Ft</span>
     `;
-    wrapper.getElementsByClassName("cart_quantity")[0].addEventListener("change", increaseQuantityFromCart)
+    wrapper.getElementsByClassName("cart_quantity")[0].addEventListener("change", increaseQuantityFromCart);
 
     return wrapper;
 
@@ -62,13 +63,16 @@ window.addEventListener('DOMContentLoaded', (event) => {
     elements[i].addEventListener("click", addToCart)
   }
 
-  function addToCart() {
+  function addToCart(event) {
+    event.persist;
+    console.log(event.currentTarget);
     let quantity =  event.target.previousSibling;
     let prodid= event.target.parentNode.lastChild.getAttribute("data-prodid");
-    let price = parseInt(event.target.parentElement.getElementsByClassName('productPrice')[0].innerHTML);
+    let price = parseInt(event.target.parentNode.getElementsByClassName('productPrice')[0].innerHTML);
     let id= event.target.parentNode.id;
     let name  = event.target.parentNode.firstChild.innerHTML;
     let max = parseInt(quantity.max);
+
     let value = parseInt(quantity.value);
 
 
@@ -92,7 +96,7 @@ window.addEventListener('DOMContentLoaded', (event) => {
             }
         }
       }
-        if(temp && !(value > max)) {
+        if(temp && !(value > max) && value > 1) {
           cartItems.push({
             "quantity" : value,
             "name" : name,
@@ -100,6 +104,7 @@ window.addEventListener('DOMContentLoaded', (event) => {
             "prodid" : prodid,
             "price" : price,
   					"max" : max,
+
           });
           bake_cookie("cart", cartItems);
 
@@ -118,10 +123,11 @@ window.addEventListener('DOMContentLoaded', (event) => {
 
 
   }
-  function increaseQuantityFromCart() {
+  function increaseQuantityFromCart(event) {
+    event.persist;
     for(i = 0; i<cartItems.length; i++) {
 
-      if(event.target.parentNode.getElementsByClassName("cart_prodname")[0].innerHTML === cartItems[i]["name"] && parseInt(event.target.value) <= parseInt(event.target.max)) {
+      if(event.target.parentNode.getElementsByClassName("cart_prodname")[0].innerHTML === cartItems[i]["name"] && parseInt(event.target.value) <= parseInt(event.target.max) && parseInt(event.target.value) > 0) {
 
         cartItems[i]["quantity"] = parseInt(event.target.value);
         bake_cookie("cart", cartItems);

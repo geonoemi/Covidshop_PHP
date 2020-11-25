@@ -43,7 +43,7 @@
         <a href="mailto:pandemia@citromail.hu">✉️ pandemia@citromail.hu</a>
     </div>
 
-<!--    <script src="js/cart.js"></script>-->
+<script src="js/cart.js"></script>
     <!--<script src="js/listing.js"></script>-->
 </body>
 
