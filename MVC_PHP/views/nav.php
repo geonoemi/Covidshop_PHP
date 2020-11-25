@@ -55,13 +55,13 @@ if(isset($_SESSION["username"])&&!isset($_SESSION['isadmin'])){
   </li>';
 }
 ?>
-  
+
 
   <li id="showCart" class="nav-item nav-item-cart">
             <img src="shopping-cart.svg">
         </li>
     </ul>
-<div id="cart">
+<div id="cart" style="display: none">
   <div class="cart-content-wrapper">
     <h2>Kosár</h2>
   </div>
