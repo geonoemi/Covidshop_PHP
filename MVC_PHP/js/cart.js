@@ -1,5 +1,16 @@
 
+
 window.addEventListener('DOMContentLoaded', (event) => {
+  document.body.addEventListener('click',function(e){
+    let itsCart=false;
+    e.composedPath().forEach(function(el){
+      if (el.id=="cart" || el.id=="showCart")
+        itsCart=true;
+    });
+
+    if (!itsCart)
+      cartContainer.style.display="none";
+  });
   let cartWrapper = document.getElementById('cartWrapperItems');
   let checkoutButton = document.getElementById('checkout');
   let showCartButton = document.getElementById('showCart');
@@ -16,16 +27,7 @@ window.addEventListener('DOMContentLoaded', (event) => {
       cartContainer.style.display = 'none';
 
   });
-  document.body.addEventListener('click',function(e){
-    let itsCart=false;
-    e.composedPath().forEach(function(el){
-      if (el.id=="cart" || el.id=="showCart")
-        itsCart=true;
-    });
 
-    if (!itsCart)
-      cartContainer.style.display="none";
-  });
 
   function createCartItem(name, price, quantity, prodid, max) {
     wrapper = document.createElement('div');
@@ -65,7 +67,6 @@ window.addEventListener('DOMContentLoaded', (event) => {
 
   function addToCart(event) {
     event.persist;
-    console.log(event.currentTarget);
     let quantity =  event.target.previousSibling;
     let prodid= event.target.parentNode.lastChild.getAttribute("data-prodid");
     let price = parseInt(event.target.parentNode.getElementsByClassName('productPrice')[0].innerHTML);
@@ -135,7 +136,8 @@ window.addEventListener('DOMContentLoaded', (event) => {
       }
     }
   }
-})
+});
+
 //document.getElementById('cartitem-'+prodid).value;
 
 
