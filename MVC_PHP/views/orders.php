@@ -17,7 +17,7 @@
     <?php include 'views/nav.php'; ?>
     <!--Table-->
     <div class="table-responsive">
-        <table class="table table-bordered table-hover booktable">
+        <table class="table table-bordered table-hover">
             <!-- Table head -->
             <thead>
             <tr>
@@ -30,7 +30,7 @@
             <!-- Table body -->
             <tbody>
             <?php
-                foreach($VIEWDATA['allOrders'] as $order){
+                foreach($VIEWDATA['orders'] as $order){
                     echo '
                         <tr>
                             <td>'.$order['username'],'</td>
