@@ -57,31 +57,22 @@
         <ul id="products">
 
 		<?php
-    
+
 
 
     foreach ($VIEWDATA['products'] as $products){
         //echo "<img src=https://drive.google.com/uc?id=1sU71LaF_uveO5KSMLp71YJnfFXSmaaxO>";
-    echo "<li>";
-    echo "<div id='" . $products["id"] . "'>";
-            echo "<span>" . $products["itemName"] . "</span>";
-    echo "<img id='" . $products["id"] . "' alt='" . $products["itemName"] . "' src='";
-    if(!empty($products["picId"])) {
-        // echo $products["picId"];
-        //echo "https://drive.google.com/uc?id=1sU71LaF_uveO5KSMLp71YJnfFXSmaaxO"; //ezt mégkiírja, pedig ugyanaz
-    echo "https://drive.google.com/uc?id=" . $products["picId"]; //picId DB-ből másolva: 1sU71LaF_uveO5KSMLp71YJnfFXSmaaxO
-    }
-    else {
-        echo "https://drive.google.com/uc?id=1c0-ie6crNSqFwqo-pwOgvfC2y1HIoTTp";
-    }
-    echo "' alt='" . $products["itemName"] . "'>";
-
-      echo "<input id='" . $products["id"] . "' type='number' min='1' max='" . $products["quantity"] . "'>";
-      echo "<button data-prodid='";
-      echo $products["id"];
-      echo "'>Kosárba</button>";
-      echo "</div>";
-      echo "</li>";
+        echo "<li>";
+        echo "<div>";
+        echo "<span>" . $products["itemName"] . "</span>";
+        echo "<img alt='" . $products["itemName"] . "' src='";
+        echo "https://drive.google.com/uc?id=" . $products["picId"];
+        echo "' alt='" . $products["itemName"] . "'>";
+        echo "<span class='productPrice'>" . $products["price"] . "</span>";
+        echo "<input id='" . $products["itemName"] ."". $products["id"] . "' type='number' min='1' value='1' max='" . $products["quantity"] . "'>";
+        echo "<button class='addtocart' data-prodid='" . $products["itemName"] ."". $products["id"] . "' > Kosárba </button>";
+        echo "</div>";
+        echo "</li>";
 
 		 }
      ?>
