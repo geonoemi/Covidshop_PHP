@@ -6,6 +6,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Termék hozzáadása</title>
 
+    <script src="./js/cart.js"></script>
+    <script src="./js/addProduct.js"></script>
+    <script src="./js/importProducts.js"></script>
     <link rel="stylesheet" href="css/styles.css">
 </head>
 
@@ -68,9 +71,6 @@
         <a href="mailto:pandemia@citromail.hu">✉️ pandemia@citromail.hu</a>
     </div>
 
-    <script src="./js/cart.js"></script>
-    <script src="./js/addProduct.js"></script>
-    <script src="./js/importProducts.js"></script>
 </body>
 
 </html>
