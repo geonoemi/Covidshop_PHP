@@ -277,6 +277,7 @@ textarea {
     }
     .container {
         padding: 5px;
+        height: 100vh;
     }
     #addproduct {
         width: 100%;

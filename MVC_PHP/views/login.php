@@ -38,6 +38,6 @@
             <a href="mailto:pandemia@citromail.hu">✉️ pandemia@citromail.hu</a>
         </div>
 
-    </body>
+    
 
 </html>
