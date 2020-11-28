@@ -68,7 +68,7 @@
       <div id="cartWrapperItems" class="cart-content-wrapper"></div>
 
       <div class="cart-content-wrapper checkout-wrapper">
-        <a href="views/cart.php"><button id="checkout"> Tovább a pénztárhoz </button></a>
+        <a href="?c=cart"><button id="checkout"> Tovább a pénztárhoz </button></a>
         </div>
       </div>
 </nav>
