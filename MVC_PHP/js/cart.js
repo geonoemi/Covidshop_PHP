@@ -59,6 +59,7 @@ window.addEventListener('DOMContentLoaded', (event) => {
   function bake_cookie(name, value) {
     let cookie = [name, '=', JSON.stringify(value), '; path=/; max-age=2100;'].join('');
     document.cookie = cookie;
+    console.log("yay");
   }
 
   function read_cookie(name) {
@@ -103,7 +104,7 @@ window.addEventListener('DOMContentLoaded', (event) => {
                 else{
                   cartItems[i]["quantity"] = parseInt(cartItems[i]["quantity"]) + value;
                   temp = false;
-                  bake_cookie((username === "guest" ? "guestcart" : "cart"), cartItems);
+                  bake_cookie("cart", cartItems);
             }
         }
       }
@@ -133,6 +134,7 @@ window.addEventListener('DOMContentLoaded', (event) => {
     for (i = 0; i<cartItems.length; i++) {
       current = cartItems[i];
       if(current["username"]===username) {
+        console.log("?");
       cartWrapper.append(createCartItem(current["name"], current["price"]*current["quantity"], cartItems[i]["quantity"],  current["prodid"], current["max"]));
       fullprice += current["price"] * current["quantity"];
     }
@@ -146,13 +148,16 @@ window.addEventListener('DOMContentLoaded', (event) => {
 
   }
   function increaseQuantityFromCart(event) {
-    event.persist;
+
     for(i = 0; i<cartItems.length; i++) {
 
       if(event.target.parentNode.getElementsByClassName("cart_prodname")[0].innerHTML === cartItems[i]["name"] && parseInt(event.target.value) <= parseInt(event.target.max) && parseInt(event.target.value) > 0) {
-
+        console.log(event.target.value);
         cartItems[i]["quantity"] = parseInt(event.target.value);
-        bake_cookie((username === "guest" ? "guestcart" : "cart"), cartItems);
+        event = null;
+        console.log(cartItems[i]["quantity"]);
+        bake_cookie("cart", cartItems);
+
         populateCart();
 
       }
@@ -200,8 +205,8 @@ window.addEventListener('DOMContentLoaded', (event) => {
       }
       if(temp) {
         guestCart[i]["username"] = username;
-
         cartItems.push(guestCart[i]);
+
 
       }
 
@@ -211,7 +216,8 @@ window.addEventListener('DOMContentLoaded', (event) => {
     }
     bake_cookie("cart", cartItems);
     guestCart.splice(0, guestCart.length);
-    
+    populateCart();
+
   }
 
 });
