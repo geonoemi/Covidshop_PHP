@@ -17,9 +17,10 @@
                 <thead>
                   <tr>
                       <th>Termék neve</th>
+                      <th>Nettó ár</th>
+                      <th>Bruttó ár</th>
                       <th>Mennyiség</th>
-                      <th>Ár</th>
-                      
+                      <th>Bruttó ár összesen</th>  
                   </tr>
                 </thead>
                 <!-- Table body -->
@@ -28,20 +29,24 @@
                       include "views/nav.php";
                       if(isset($VIEWDATA["cart"])) {
                         foreach ($VIEWDATA["cart"] as $key) {
-                          // csúnya frontend
-
-
+                          
                           echo "<ul>";
-                          echo "<tr>". "<td>" . $key["name"] . "</td>";
-                          echo "<td>" . $key["quantity"] . "</td>";
-                          echo "<td>".  $key["quantity"] * $key["price"] . "</td>";
+                            echo "<tr>";
+                              echo "<td>" . $key["name"] . "</td>";
+                              echo "<td>" . 0.73*$key["price"] . "</td>";
+                              echo "<td>" . $key["price"] . "</td>";
+                              echo "<td>" . $key["quantity"] . "</td>";
+                              echo "<td>".  $key["quantity"] * $key["price"] . "</td>";
+                            echo "</tr>";
                           echo "</ul>";                      
                         }
+
                       }
+
                     ?>
                   </tbody>
             </table>
-
+        <?php echo "Végösszeg: fullprice" . /*$fullprice .*/ " Ft";?>
         <button id="checkout">Fizetés </button>
     </body>
 </html>
