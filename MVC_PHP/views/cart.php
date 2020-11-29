@@ -11,20 +11,37 @@
 
 
     <body>
-      <ul>
-        <?php
-        include "views/nav.php";
-        if(isset($VIEWDATA["cart"])) {
-        foreach ($VIEWDATA["cart"] as $key) {
-          // csúnya frontend
-          echo "<li>" . $key["name"] . "</li>";
-          echo "<li>" . $key["quantity"] . "</li>";
-          echo "<li>" . $key["quantity"] * $key["price"] . "</li>";
-        }
-      }
-        ?>
-        <ul>
+      <div class="table-responsive">
+            <table class="table table-bordered table-hover">
+                <!-- Table head -->
+                <thead>
+                  <tr>
+                      <th>Termék neve</th>
+                      <th>Mennyiség</th>
+                      <th>Ár</th>
+                      
+                  </tr>
+                </thead>
+                <!-- Table body -->
+                <tbody>
+                    <?php
+                      include "views/nav.php";
+                      if(isset($VIEWDATA["cart"])) {
+                        foreach ($VIEWDATA["cart"] as $key) {
+                          // csúnya frontend
+
+
+                          echo "<ul>";
+                          echo "<tr>". "<td>" . $key["name"] . "</td>";
+                          echo "<td>" . $key["quantity"] . "</td>";
+                          echo "<td>".  $key["quantity"] * $key["price"] . "</td>";
+                          echo "</ul>";                      
+                        }
+                      }
+                    ?>
+                  </tbody>
+            </table>
+
         <button id="checkout">Fizetés </button>
-        <script src="js/cart.js"></script>
     </body>
 </html>
