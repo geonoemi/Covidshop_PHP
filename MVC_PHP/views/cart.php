@@ -34,21 +34,21 @@
                           echo "<ul>";
                             echo "<tr>";
                               echo "<td>" . $key["name"] . "</td>";
-                              echo "<td>" . 0.73*$key["price"] . "</td>";
+                              echo "<td>" . number_format(0.73*$key["price"], 0, ',', ' ') . "</td>";
                               echo "<td>" . $key["price"] . "</td>";
                               echo "<td>" . $key["quantity"] . "</td>";
-                              echo "<td>".  $key["quantity"] * $key["price"] . "</td>";
+                              echo "<td>".  number_format($key["quantity"] * $key["price"], 0, ',', ' ') . "</td>";
                             echo "</tr>";
                           echo "</ul>"; 
                           $fullprice += $key["price"] * $key["quantity"];                     
                         }
-
                       }
-
                     ?>
                   </tbody>
             </table>
-        <?php echo "Végösszeg: $fullprice" . /*$fullprice .*/ " Ft";?>
+        <?php 
+        $fullprice=number_format($fullprice, 0, ',', ' ');
+        echo "Végösszeg: $fullprice" . " Ft";?>
         <button id="checkout">Fizetés </button>
     </body>
 </html>
