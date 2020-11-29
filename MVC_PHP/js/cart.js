@@ -21,6 +21,7 @@ window.addEventListener('DOMContentLoaded', (event) => {
 
   if (username!=="guest") {
     mergeGuestAndUserCart();
+    populateCart();
   }
   else {
     checkoutButton.parentNode.href="?c=login";
@@ -57,7 +58,7 @@ window.addEventListener('DOMContentLoaded', (event) => {
 
 
   function bake_cookie(name, value) {
-    let cookie = [name, '=', JSON.stringify(value), '; path=/; max-age=2100;'].join('');
+    let cookie = [name, '=', JSON.stringify(value), '; path=/; max-age=2100; Secure;'].join('');
     document.cookie = cookie;
     console.log("yay");
   }
@@ -148,14 +149,13 @@ window.addEventListener('DOMContentLoaded', (event) => {
 
   }
   function increaseQuantityFromCart(event) {
-
+    event.persist;
     for(i = 0; i<cartItems.length; i++) {
 
-      if(event.target.parentNode.getElementsByClassName("cart_prodname")[0].innerHTML === cartItems[i]["name"] && parseInt(event.target.value) <= parseInt(event.target.max) && parseInt(event.target.value) > 0) {
-        console.log(event.target.value);
+      if(event.target.parentNode.getElementsByClassName("cart_prodname")[0].innerHTML === cartItems[i]["name"] && parseInt(event.target.value) <= parseInt(event.target.max) && parseInt(event.target.value) > 0 && cartItems[i]["username"] === username) {
+
         cartItems[i]["quantity"] = parseInt(event.target.value);
-        event = null;
-        console.log(cartItems[i]["quantity"]);
+
         bake_cookie("cart", cartItems);
 
         populateCart();
@@ -171,7 +171,7 @@ window.addEventListener('DOMContentLoaded', (event) => {
 
         cartItems.splice(i, 1);
         bake_cookie("cart", cartItems);
-        populateCart();
+
       }
   }
 }
