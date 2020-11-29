@@ -26,6 +26,7 @@
                 <!-- Table body -->
                 <tbody>
                     <?php
+                    $fullprice=0;
                       include "views/nav.php";
                       if(isset($VIEWDATA["cart"])) {
                         foreach ($VIEWDATA["cart"] as $key) {
@@ -38,7 +39,8 @@
                               echo "<td>" . $key["quantity"] . "</td>";
                               echo "<td>".  $key["quantity"] * $key["price"] . "</td>";
                             echo "</tr>";
-                          echo "</ul>";                      
+                          echo "</ul>"; 
+                          $fullprice += $key["price"] * $key["quantity"];                     
                         }
 
                       }
@@ -46,7 +48,7 @@
                     ?>
                   </tbody>
             </table>
-        <?php echo "Végösszeg: fullprice" . /*$fullprice .*/ " Ft";?>
+        <?php echo "Végösszeg: $fullprice" . /*$fullprice .*/ " Ft";?>
         <button id="checkout">Fizetés </button>
     </body>
 </html>
