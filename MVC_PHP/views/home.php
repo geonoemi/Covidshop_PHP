@@ -12,7 +12,7 @@
 
     <body>
         <?php include "views/nav.php"?>
-       
+
         <div class="container">
             <h1>Termékek</h1>
 
@@ -21,7 +21,7 @@
                 <?php
                     foreach ($VIEWDATA['products'] as $products){
                         echo "<li>";
-                        echo "<div>";
+                        echo "<div id='". $products["id"] . "'>";
                         echo "<span>" . $products["itemName"] . "</span>";
                         echo "<img alt='" . $products["itemName"] . "' src='";
                         echo "https://drive.google.com/uc?id=" . $products["picId"];

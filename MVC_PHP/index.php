@@ -8,7 +8,12 @@ $MODEL =  new Model();
 
 $VIEWDATA = [];
 
-
+if(isset($_SESSION["username"])) {
+	echo "<meta property='username' content='" . $_SESSION["username"] . "'>";
+}
+else {
+	echo "<meta property='username' content='guest'>";
+}
 //FIND CONTROLLER
 if(isset($_GET['c'])){ //c stands for controller
 

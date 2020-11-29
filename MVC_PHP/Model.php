@@ -94,7 +94,7 @@ class Model{
 		//eredmény tömb
 		$products = array();
 
-		$sql = "SELECT itemName, price, quantity, description, id, picId FROM product WHERE itemName LIKE '%" . $keyword . "%';";
+		$sql = "SELECT itemName, price, quantity, description, id, picId FROM product WHERE itemName LIKE '%" . $keyword . "% AND quantity>0';";
 		$result = $this->conn->query($sql);
 		while($row = $result->fetch()) {
 
@@ -389,7 +389,7 @@ class Model{
 			}
 			return $addressArr;
 		}//ha nincs akkor hamissal térünk vissza
-		else return false;	
+		else return false;
 	}
 
 	//lakcím hozzáadása
@@ -481,4 +481,11 @@ class Model{
 		//végrehajtás
 		return $stmt->execute();
 	}
+	function checkOut($quantity, $id) {
+		$stmt = $this->conn->prepare("UPDATE product SET quantity = quantity - :quantity WHERE id = :id AND quantity - :quantity >= 0;");
+		$stmt->bindParam(':quantity', $quantity);
+		$stmt->bindParam(':id', $id);
+		return $stmt->execute();
+	}
+
 }

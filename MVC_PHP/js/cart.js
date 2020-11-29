@@ -1,5 +1,3 @@
-
-
 window.addEventListener('DOMContentLoaded', (event) => {
 
   document.body.addEventListener('click',function(e){
@@ -17,6 +15,16 @@ window.addEventListener('DOMContentLoaded', (event) => {
   let showCartButton = document.getElementById('showCart');
   let cartContainer=document.getElementById('cart');
   let cartItems = read_cookie("cart")===null ? new Array() : read_cookie("cart");
+  let guestCart = read_cookie("guestcart")===null ? new Array() : read_cookie("guestcart");
+  let updateCart = false;
+  let username = document.head.querySelector("[property~=username][content]").content;
+
+  if (username!=="guest") {
+    mergeGuestAndUserCart();
+  }
+  else {
+    checkoutButton.parentNode.href="?c=login";
+  }
   showCartButton.addEventListener('click', function () {
 
     if (cartContainer.style.display == "none") {
@@ -61,16 +69,18 @@ window.addEventListener('DOMContentLoaded', (event) => {
 
   let elements = document.getElementsByClassName('addtocart');
   for(i = 0; i<elements.length; i++) {
-    elements[i].addEventListener("click", addToCart)
-  }
 
+    elements[i].addEventListener("click", addToCart)
+
+}
   function addToCart(event) {
 
     event.persist;
     let quantity =  event.target.previousSibling;
     let prodid= event.target.parentNode.lastChild.getAttribute("data-prodid");
     let price = parseInt(event.target.parentNode.getElementsByClassName('productPrice')[0].innerHTML);
-    let id= event.target.parentNode.id;
+    let id = event.target.parentNode.id;
+    console.log(id);
     let name  = event.target.parentNode.firstChild.innerHTML;
     let max = parseInt(quantity.max);
 
@@ -82,7 +92,7 @@ window.addEventListener('DOMContentLoaded', (event) => {
 
         let temp = true;
         for(i = 0; i<cartItems.length; i++) {
-            if (cartItems[i]["name"] === name) {
+            if (cartItems[i]["name"] === name && cartItems[i]["username"] === username) {
                 let sum = cartItems[i]["quantity"] + value;
 
                 if(value > max || sum > max) {
@@ -93,8 +103,7 @@ window.addEventListener('DOMContentLoaded', (event) => {
                 else{
                   cartItems[i]["quantity"] = parseInt(cartItems[i]["quantity"]) + value;
                   temp = false;
-
-                  bake_cookie("cart", cartItems);
+                  bake_cookie(username === "guest" ? "guestcart" : "cart", cartItems);
             }
         }
       }
@@ -107,9 +116,9 @@ window.addEventListener('DOMContentLoaded', (event) => {
             "prodid" : prodid,
             "price" : price,
   					"max" : max,
-
+            "username" : username,
           });
-          bake_cookie("cart", cartItems);
+          bake_cookie(username === "guest" ? "guestcart" : "cart", cartItems);
 
       }
 
@@ -123,10 +132,12 @@ window.addEventListener('DOMContentLoaded', (event) => {
     let fullprice = 0;
     for (i = 0; i<cartItems.length; i++) {
       current = cartItems[i];
+      if(current["username"]===username) {
       cartWrapper.append(createCartItem(current["name"], current["price"]*current["quantity"], cartItems[i]["quantity"],  current["prodid"], current["max"]));
       fullprice += current["price"] * current["quantity"];
-      }
-    console.log(fullprice);
+    }
+  }
+
     if (fullprice > 0) cartWrapper.append(`Végösszeg: ${fullprice} Ft`);
 
 
@@ -141,8 +152,9 @@ window.addEventListener('DOMContentLoaded', (event) => {
       if(event.target.parentNode.getElementsByClassName("cart_prodname")[0].innerHTML === cartItems[i]["name"] && parseInt(event.target.value) <= parseInt(event.target.max) && parseInt(event.target.value) > 0) {
 
         cartItems[i]["quantity"] = parseInt(event.target.value);
-        bake_cookie("cart", cartItems);
+        bake_cookie(username === "guest" ? "guestcart" : "cart", cartItems);
         populateCart();
+        
       }
     }
   }
@@ -153,43 +165,41 @@ window.addEventListener('DOMContentLoaded', (event) => {
       if(event.target.parentNode.getElementsByClassName("cart_prodname")[0].innerHTML === cartItems[i]["name"]) {
 
         cartItems.splice(i, 1);
-        bake_cookie("cart", cartItems);
+        bake_cookie(username === "guest" ? "guestcart" : "cart", cartItems);
         populateCart();
       }
   }
 }
-});
-
-//document.getElementById('cartitem-'+prodid).value;
-
+// ezzel a fossal annyi kurva órám elment, hogy remélem valaki értékeli
+  function mergeGuestAndUserCart() {
 
 
-  /* törlés bugos
-  function deleteItem(item,prodid){
-    document.querySelector(`div[data-prodid="${prodid}"] .cart_delete`).addEventListener('click', function () {
-      removeFromCart(item.getAttribute(prodid));
-      item.remove();
-    });
+    for(i = 0; i< guestCart.length; i++) {
+      let temp = true;
+      for(j = 0; j < cartItems.length; j++) {
+
+        if(cartItems[j]["name"] == guestCart[i]["name"] && cartItems[j]["username"] === username) {
+
+          temp = false;
+          if(cartItems[j]["quantity"] + guestCart[i]["quantity"] <= cartItems[j]["max"]) {
+            cartItems[j]["quantity"] += guestCart[i]["quantity"];
+
+          }
+          else {
+
+            cartItems[j]["quantity"] = cartItems[j]["max"];
+          }
+        }
+      }
+      if(temp) {
+        guestCart[i]["username"] = username;
+
+        cartItems.push(guestCart[i]);
+      }
+    }
+
+    bake_cookie("cart", cartItems);
+    guestCart.splice(0, guestCart.length);
+    bake_cookie("guestcart", guestCart);
   }
-  function removeFromCart(id, decreaseVal) {
-		if (cartItems[id]) {
-			cartItems[id] = cartItems[id] - decreaseVal;
-			if (cartItems[id] < 0)
-				delete cartItems[id];
-		}
-  }*/
-
-
-
-
-
-
-
-//document.getElementBaClassName(".cart_delete").addEventListener("click", function(){
- // let deleteButton=document.getElementsByClassName("cart_delete");
-//function deleteFromCart(){
-  //for (i = 0; i<cartItems.length; i++) {
-
- // }
-//};
-//deleteFromCart();
+});

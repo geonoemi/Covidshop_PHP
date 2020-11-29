@@ -30,7 +30,7 @@
                 if(!empty($VIEWDATA['products'])) {
                   foreach ($VIEWDATA['products'] as $products){
                     echo "<li>";
-                    echo "<div>";
+                    echo "<div id='". $products["id"] . "'>";
                     echo "<span>" . $products["itemName"] . "</span>";
                     echo "<img alt='" . $products["itemName"] . "' src='";
                     echo "https://drive.google.com/uc?id=" . $products["picId"];
@@ -54,5 +54,5 @@
         </div>
 
   </body>
-  
+
 </html>

@@ -37,15 +37,15 @@ body {
 	background-color:white;
 	border:1px solid #3F51B5;
 	color:#413f3f;
-	
-	
+
+
 	display:none;
 }
 .cart-content-wrapper{
 	width:100%;
 	padding:2rem;
 	box-sizing:border-box;
-	
+
 }
 .cart-content-wrapper h2{
 	border-bottom:2px solid #3F51B5;
@@ -248,7 +248,7 @@ textarea {
 }
 .contact-us-wrapper:hover {
     background: rgb(78, 94, 181);
-	
+
 }
 
 
@@ -283,10 +283,10 @@ textarea {
         width: 100%;
     }
 
-  
 
-  
-	
+
+
+
 	#cart{
 		width:100%;
 		right:0px;
@@ -294,17 +294,31 @@ textarea {
 		top:167px;
 		min-height: 66vh;
 	}
-		
+
 	.cart_quantity{
 		width: 13% !important;
 		padding: 13px 3px !important;
 	}
-	
+
 	.cart_fullprice{
 		display:block;
 	}
-	
+
 	#cartWrapperItems>div{
 		margin-bottom:3rem;
 	}
+}
+.cart-row td{
+  border-color: black;
+  border-style: solid;
+  border-width: 2px;
+}
+
+#order-price-sum td {
+  font-weight: bold;
+  border: 0;
+}
+h1 {
+  margin: 20px;
+  color: #3F51B5;
 }

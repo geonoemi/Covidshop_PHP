@@ -12,13 +12,18 @@ if(isset($_POST['btnLogin'])){
             $_SESSION["username"] = $_POST['username'];
             header("Location: index.php");
             exit();
-        }else{
+        }
+        else{
+
             $_SESSION["username"] = $_POST['username'];
             $userid = $MODEL->getUserId($_POST["username"]);
             $_SESSION["userid"] = $userid["id"];
             header("Location: index.php");
             exit();
-        }         
+        }
+    }
+    else {
+      echo "<script> alert('Hibás bejelentkezési adatok!')</script>";
     }
 
 
