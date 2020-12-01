@@ -37,7 +37,7 @@
                             echo "<tr>";
                               echo "<td>" . $key["name"] . "</td>";
                               echo "<td>" . number_format(0.73*$key["price"], 0, ',', ' ') . " Ft</td>";
-                              echo "<td>" . $key["price"] . "</td>";
+                              echo "<td>" . number_format($key["price"], 0, ',', ' ') . "</td>";
                               echo "<td>" . $key["quantity"] . "</td>";
                               echo "<td>".  number_format($key["quantity"] * $key["price"], 0, ',', ' ') . " Ft</td>";
                             echo "</tr>";
