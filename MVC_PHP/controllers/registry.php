@@ -9,7 +9,7 @@ if (isset($_POST['reg_user'])) {
     header("Location: index.php?c=login");
     exit();
     } else {
-      echo " A jelszó legalább 8 karakter hosszú legyen, tartalmazzon legalább egy kisbetűt,egy nagybetűt és egy számot!";
+      echo "<span class='error'> A jelszó legalább 8 karakter hosszú legyen, tartalmazzon legalább egy kisbetűt,egy nagybetűt és egy számot!</span>";
     }
   }else echo "<span class='error'>A két jelszó nem egyezik.</span>";
 
