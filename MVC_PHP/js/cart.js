@@ -167,11 +167,11 @@ window.addEventListener('DOMContentLoaded', (event) => {
     event.persist;
     for(i = 0; i<cartItems.length; i++) {
 
-      if(event.target.parentNode.getElementsByClassName("cart_prodname")[0].innerHTML === cartItems[i]["name"]) {
-
+      if(event.target.parentNode.getElementsByClassName("cart_prodname")[0].innerHTML === cartItems[i]["name"] && cartItems[i]["username"] === username) {
+        
         cartItems.splice(i, 1);
         bake_cookie("cart", cartItems);
-
+        populateCart();
       }
   }
 }

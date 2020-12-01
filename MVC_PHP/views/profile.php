@@ -9,6 +9,7 @@
       <link rel="stylesheet" href="css/styles.css">
       <script src="js/cart.js"></script>
 
+
   </head>
 
   <body>
@@ -73,11 +74,13 @@
         <form method="post" action="index.php?c=profile">
               <div class="input-group">
                 <label>Irányítószám</label>
-                <input type="number" name="postalcode" require>
+                <input type="number" name="postalcode" id="zip" require>
+                <script src="js/getCityFromZipJS.js"> </script>
+                <?php include("controllers/cityFromZipCode.php"); ?>
               </div>
               <div class="input-group">
                 <label>Város</label>
-                <input type="text" name="city" require>
+                <input type="text" name="city" id="city" require>
               </div>
               <div class="input-group">
                 <label>Közterület</label>

@@ -94,7 +94,7 @@ class Model{
 		//eredmény tömb
 		$products = array();
 
-		$sql = "SELECT itemName, price, quantity, description, id, picId FROM product WHERE itemName LIKE '%" . $keyword . "% AND quantity>0';";
+		$sql = "SELECT itemName, price, quantity, description, id, picId FROM product WHERE itemName LIKE '%" . $keyword . "%';";
 		$result = $this->conn->query($sql);
 		while($row = $result->fetch()) {
 
