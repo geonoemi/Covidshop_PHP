@@ -83,7 +83,7 @@
                 <input type="text" name="city" id="city" require>
               </div>
               <div class="input-group">
-                <label>Közterület</label>
+                <label>Közterület neve, jellege</label>
                 <input type="text" name="street" require>
               </div>
                 <div class="input-group">
@@ -91,7 +91,7 @@
                 <input type="text" name="number" require>
               </div>
                 <div class="input-group">
-                <label>Egyéb címadat</label>
+                <label>Emelet, ajtó</label>
                 <input type="text" name="other">
               </div>
               <div class="input-group">
