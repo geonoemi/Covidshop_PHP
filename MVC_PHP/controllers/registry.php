@@ -3,7 +3,7 @@ include 'views/registry.php';
 
 if (isset($_POST['reg_user'])) {
   if($_POST["password_1"]===$_POST["password_2"] ){
-    if (preg_match("#.*^(?=.{8,20})(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*\W).*$#",  $_POST['password_1'] && $_POST["password_1"] !=$_POST["username"])){
+    if (preg_match("#.*^(?=.{8,20})(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9]).*$#",  $_POST['password_1']) && $_POST["password_1"] !==$_POST["username"]){
 
     $MODEL->addUser($_POST["username"], $_POST["password_1"], $_POST["email"]);
     header("Location: index.php?c=login");
