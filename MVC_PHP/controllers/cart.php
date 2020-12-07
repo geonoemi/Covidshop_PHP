@@ -35,7 +35,7 @@ if(isset($_POST["checkout"])) {
     $_COOKIE["cart"] = $newCookie;
     unset($VIEWDATA["cart"]);
   }else{
-    echo "<span class='error'>Nem adtál meg szállítási címet! Kérlek módosítsd a felhasználói adataid között.</span>";
+    echo "<span class='error'>Nem adtál meg szállítási címet! Kérlek módosítsd a Profilom lapon.</span>";
   }
 
 

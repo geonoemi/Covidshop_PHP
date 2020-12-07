@@ -17,6 +17,7 @@
                     <?php
                     $fullprice=0;
                       include "views/nav.php";
+
                       if(isset($VIEWDATA["cart"])) {
                         echo '<table class="table table-bordered table-hover">';
                         echo '<thead>
@@ -43,18 +44,17 @@
                             echo "</tr>";
 
                           $fullprice += $key["price"] * $key["quantity"];
+                          }
                         }
-                      }
 
-                      $fullprice=number_format($fullprice, 0, ',', ' ');
-                      echo "<tr id='order-price-sum'><td>Végösszeg</td>";
-                      echo "<td></td><td></td><td></td><td>" . $fullprice . " Ft</td></tr></tbody>
-                </table>";
-                      echo "<button name='checkout' type='submit' form='order'>Fizetés</button>";
-                      }
+                        $fullprice=number_format($fullprice, 0, ',', ' ');
+                        echo "<tr id='order-price-sum'><td>Végösszeg</td>";
+                        echo "<td></td><td></td><td></td><td>" . $fullprice . " Ft</td></tr></tbody></table>";
+                        echo "<button name='checkout' type='submit' form='order'>Fizetés</button>";
+                        }
 
                       else {
-                        echo "<span class='error'>Jelenleg a kosár üres.</span>";
+                        echo "<span class='error'>Köszönjük a vásárlást!</span>";
                       }
                     ?>
 
