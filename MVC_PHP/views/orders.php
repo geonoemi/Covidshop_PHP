@@ -33,7 +33,7 @@
                                 <tr>
                                     <td>'.$order['username'],'</td>
                                     <td>'.$order['items'].'</td>
-                                    <td>'.$order['price'].'</td>
+                                    <td>'. number_format($order['price'], 0, ',', ' ').'</td>
                                     <td>'.$order['date'].'</td>
                                 </tr>
                             ';

@@ -1,6 +1,6 @@
 //query string name: inpText
 
-let searchProducts = function() {
+/*let searchProducts = function() {
         function getResults(inpText, prodArr) {
             if (inpText && inpText !== "") {
                 let results = [];
@@ -45,4 +45,4 @@ let searchProducts = function() {
             resultProdArray: resultProdArray
         }
     }
-    ()
+    ()*/

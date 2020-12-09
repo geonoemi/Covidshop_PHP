@@ -47,7 +47,7 @@
             <div class="input-wrapper">
                 <label class="text-primary">
 					Fénykép linkje
-					<b title="Ide másolhatja egy google driveban tárolt fotó nyilvános megosztási linkjét!">
+					<b title="Google driveban tárolt fotó linkje">
 						&#128712;
 					</b>
 				</label>
@@ -56,12 +56,12 @@
 
             <br>
 
-			<div>
+			<!--div>
 				<i>
 					Általunk előre létrehozott termékek importálásához kérem kattintson
 					<span style="color:orange;" id="restore">IDE</span>!(FIGYELEM, az álltalad már létrehozott termékek törlésre kerülnek)
 				</i>
-			</div>
+			</div-->
             <input class="btn submit-btn" type="submit" value="Elküld">
         </form>
     </div>

@@ -1,6 +1,5 @@
 <?php 
 
-
 $zipcode = array(
     array('zipcode' => '8127','county' => 'Fejér','cityname' => 'Aba'),
     array('zipcode' => '8128','county' => 'Fejér','cityname' => 'Aba'),

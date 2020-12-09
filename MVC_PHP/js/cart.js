@@ -82,13 +82,10 @@ window.addEventListener('DOMContentLoaded', (event) => {
     let prodid= event.target.parentNode.lastChild.getAttribute("data-prodid");
     let price = parseInt(event.target.parentNode.getElementsByClassName('productPrice')[0].innerHTML);
     let id = event.target.parentNode.id;
-    console.log(id);
     let name  = event.target.parentNode.firstChild.innerHTML;
     let max = parseInt(quantity.max);
 
     let value = parseInt(quantity.value);
-
-
 
     if (!isNaN(value) && value>0) {
 
@@ -143,10 +140,6 @@ window.addEventListener('DOMContentLoaded', (event) => {
 
     if (fullprice > 0) cartWrapper.append(`Végösszeg: ${fullprice} Ft`);
 
-
-
-
-
   }
   function increaseQuantityFromCart(event) {
     event.persist;
@@ -195,10 +188,8 @@ window.addEventListener('DOMContentLoaded', (event) => {
           temp = false;
           if(cartItems[j]["quantity"] + guestCart[i]["quantity"] <= cartItems[j]["max"]) {
             cartItems[j]["quantity"] += guestCart[i]["quantity"];
-
           }
           else {
-
             cartItems[j]["quantity"] = cartItems[j]["max"];
           }
         }
@@ -206,8 +197,6 @@ window.addEventListener('DOMContentLoaded', (event) => {
       if(temp) {
         guestCart[i]["username"] = username;
         cartItems.push(guestCart[i]);
-
-
       }
 
     }
@@ -221,8 +210,9 @@ window.addEventListener('DOMContentLoaded', (event) => {
   }
 
 });
+
 function read_cookie(name) {
- let result = document.cookie.match(new RegExp(name + '=([^;]+)'));
- result && (result = JSON.parse(result[1]));
- return result;
+  let result = document.cookie.match(new RegExp(name + '=([^;]+)'));
+  result && (result = JSON.parse(result[1]));
+  return result;
 }

@@ -21,13 +21,13 @@
                       if(isset($VIEWDATA["cart"])) {
                         echo '<table class="table table-bordered table-hover">';
                         echo '<thead>
-                        <tr>
-                        <th>Termék neve</th>
-                        <th>Nettó ár</th>
-                        <th>Bruttó ár</th>
-                        <th>Mennyiség</th>
-                        <th>Bruttó ár összesen</th>
-                        </tr>
+                          <tr>
+                            <th>Termék neve</th>
+                            <th>Nettó ár</th>
+                            <th>Bruttó ár</th>
+                            <th>Mennyiség</th>
+                            <th>Bruttó ár összesen</th>
+                          </tr>
                         </thead>
 
                         <tbody>';
@@ -58,14 +58,10 @@
                       }
                     ?>
 
+        <form id="order" action="?c=cart" method="post"></form>
 
-
-
-
-
-        <form id="order" action="?c=cart" method="post">
-
-
-        </form>
+        <div class="contact-us-wrapper">
+          <a href="mailto:pandemia@citromail.hu">✉️ pandemia@citromail.hu</a>
+        </div>
     </body>
 </html>

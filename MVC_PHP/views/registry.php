@@ -25,28 +25,30 @@
             </div>
           </div>
 
-        <form method="post" action="index.php?c=registry">
+        <form id="registryForm" method="post" action="index.php?c=registry">
+        <!--?php include("controllers/registryValidate.php"); ?-->
 
           <div class="input-group">
             <label>Username</label>
-            <input type="text" name="username" value="">
+            <input id="username" type="text" name="username" value="" required>
           </div>
           <div class="input-group">
             <label>Email</label>
-            <input type="email" name="email" value="">
+            <input id="email" type="email" name="email" value="" required>
           </div>
           <div class="input-group">
             <label>Password</label>
-            <input type="password" name="password_1">
+            <input id="pw1" type="password" name="password_1" required>
           </div>
           <div class="input-group">
             <label>Confirm password</label>
-            <input type="password" name="password_2">
+            <input id="pw2" type="password" name="password_2" required>
           </div>
           <div class="input-group">
-            <button type="submit" class="btn" name="reg_user">Register</button>
+            <button id="submit" type="submit" class="btn" name="reg_user">Regisztráció</button>
           </div>
-          
+          <!--script src="js/registryValidate.js"> </script-->
+
         </form>
     </div>
   </body>
