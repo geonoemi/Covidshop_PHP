@@ -20,7 +20,7 @@ $('#add-to-cart').on('click', function () {
                 'left': cart.offset().left + 10,
                 'width': 75,
                 'height': 75
-        }, 1000, 'easeInOut');
+        }, 1000, 'easeInOutExpo');
         
         setTimeout(function () {
             cart.effect("shake", {
