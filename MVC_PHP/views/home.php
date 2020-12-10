@@ -22,7 +22,7 @@
                 <?php
                     foreach ($VIEWDATA['products'] as $products){
                         echo "<li>";
-                            echo "<div id='". $products["id"] . "'>";
+                            echo "<div class='item' id='". $products["id"] . "'>";
                                 echo "<span>" . $products["itemName"] . "</span>";
                                 echo "<img alt='" . $products["itemName"] . "' src='";
                                 echo "https://drive.google.com/uc?id=" . $products["picId"];
@@ -41,7 +41,8 @@
         </div>
 
         <script src="js/flytocart.js"></script>
-
+         
+        
     </body>
 
 </html>
