@@ -11,3 +11,8 @@
     width: 300px;
     border-radius: 15px;
 }
+.success{
+    width: 300px;
+    border-radius: 15px;
+    background-color: #00cf0a;
+}
