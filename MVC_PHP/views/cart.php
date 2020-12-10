@@ -55,7 +55,7 @@
                         }
 
                       else {
-                        echo "<span class='success'>Köszönjük a vásárlást!</span>";
+                        echo "<div class='container' ><div class='row'><span class='success is-center'>Köszönjük a vásárlást!</span></div></div>";
                       }
                     ?>
 
