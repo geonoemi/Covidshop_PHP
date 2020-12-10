@@ -23,7 +23,7 @@ if(isset($_POST['btnLogin'])){
         }
     }
     else {
-        echo "<div class='error'>Hibás felhasználónév, vagy jelszó!</div>";
+        echo "<div class='error is-center'>Hibás felhasználónév, vagy jelszó!</div>";
     }
 
 

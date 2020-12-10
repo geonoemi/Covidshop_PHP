@@ -9,9 +9,9 @@ if (isset($_POST['reg_user'])) {
     header("Location: index.php?c=login");
     exit();
     } else {
-      echo "<span class='error'> A jelszó ne egyezzen meg a felhasználónévvel, legalább 8 karakter hosszú legyen, tartalmazzon legalább egy kisbetűt,egy nagybetűt és egy számot!</span>";
+      echo "<span class='error is-center'>A jelszó ne egyezzen meg a felhasználónévvel, legalább 8 karakter hosszú legyen, tartalmazzon legalább egy kisbetűt,egy nagybetűt és egy számot!</span>";
     }
-  }else echo "<span class='error'>A két jelszó nem egyezik.</span>"; 
+  }else echo "<span class='error is-center'>A két jelszó nem egyezik.</span>"; 
 }
 /*if (isset($_POST['username']) && isset($_POST['email']) && isset($_POST['password_1'])){
   //echo "1";
@@ -40,9 +40,9 @@ if (isset($_POST['reg_user'])) {
     header("Location: index.php?c=login");
     exit();
     } else {
-      echo "<span class='error'> A jelszó ne egyezzen meg a felhasználónévvel, legalább 8 karakter hosszú legyen, tartalmazzon legalább egy kisbetűt,egy nagybetűt és egy számot!</span>";
+      echo "<span class='error is-center'> A jelszó ne egyezzen meg a felhasználónévvel, legalább 8 karakter hosszú legyen, tartalmazzon legalább egy kisbetűt,egy nagybetűt és egy számot!</span>";
     }
-  }else echo "<span class='error'>A két jelszó nem egyezik.</span>";
+  }else echo "<span class='error is-center'>A két jelszó nem egyezik.</span>";
 
 
   

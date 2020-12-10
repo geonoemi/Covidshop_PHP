@@ -37,7 +37,7 @@
                         echo "' alt='" . $products["itemName"] . "'>";
                         echo "<span class='productPrice'>" . $products["price"] /*number_format($products["price"], 0, ',', ' ')*/ . " Ft</span>";
                         echo "<input id='" . $products["itemName"] ."". $products["id"] . "' type='number' min='1' value='1' max='" . $products["quantity"] . "'>";
-                        echo "<button class='addtocart' data-prodid='" . $products["itemName"] ."". $products["id"] . "' > Kosárba </button>";
+                        echo "<button id='add-to-cart' class='addtocart' data-prodid='" . $products["itemName"] ."". $products["id"] . "' > Kosárba </button>";
                       echo "</div>";
                     echo "</li>";
 
@@ -53,6 +53,7 @@
             <a href="mailto:pandemia@citromail.hu">✉️ pandemia@citromail.hu</a>
         </div>
 
+        <script src="js/mirko.js"></script>
   </body>
 
 </html>

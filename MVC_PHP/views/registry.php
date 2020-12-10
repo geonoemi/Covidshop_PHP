@@ -8,6 +8,7 @@
       <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
       <script src="js/cart.js"></script>
       <link rel="stylesheet" href="css/styles.css">
+      <link rel="stylesheet" href="css/mirko.css">
   </head>
 
   <body>
@@ -25,23 +26,23 @@
             </div>
           </div>
 
-        <form id="registryForm" method="post" action="index.php?c=registry">
+        <form id="registryForm" method="post" action="index.php?c=registry" class="is-center reg-form">
         <!--?php include("controllers/registryValidate.php"); ?-->
 
           <div class="input-group">
-            <label>Username</label>
-            <input id="username" type="text" name="username" value="" required>
+            <label>Felhasználónév</label>
+            <input id="username" type="" name="username" value="" required>
           </div>
           <div class="input-group">
-            <label>Email</label>
+            <label>E-mail</label>
             <input id="email" type="email" name="email" value="" required>
           </div>
           <div class="input-group">
-            <label>Password</label>
+            <label>Jelszó</label>
             <input id="pw1" type="password" name="password_1" required>
           </div>
           <div class="input-group">
-            <label>Confirm password</label>
+            <label>Jelszó megerősítés</label>
             <input id="pw2" type="password" name="password_2" required>
           </div>
           <div class="input-group">

@@ -8,6 +8,7 @@
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
         <script src="js/cart.js"></script>
         <link rel="stylesheet" href="css/styles.css">
+        <link rel="stylesheet" href="css/mirko.css">
     </head>
 
     <body>
@@ -16,18 +17,18 @@
         <div class="container">
             <div class="login-box">
                 <div class="row">
-                    <div class="col-md-6 login-left">
+                    <div class="col-md-6 is-center login-form">
                         <h2>Bejelentkezés</h2>
                         <form action="index.php?c=login" method="post">
                             <div class="form-group">
                                 <label>Felhasználónév</label>
-                                <input type="text" name="username" class="form-control" required>
+                                <input type="" name="username" class="form-control" required>
                             </div>
                             <div class="form-group">
                                 <label>Jelszó</label>
                                 <input type="password" name="password" class="form-control" required>
                             </div>
-                            <button type="submit" class="btn btn-danger" name="btnLogin">Login</button>
+                            <button type="submit" class="btn btn-danger" name="btnLogin">Bejelentkezés</button>
                         </form>
                     </div>
                 </div>
