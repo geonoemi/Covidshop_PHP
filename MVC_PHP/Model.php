@@ -68,27 +68,6 @@ class Model{
 		return $products;
 	}
 
-	//csinálhatunk egy ilyen generikus metódust is, ha ez szimpibb, akkor nem kell a fenti kettő
-	//ez működik bármilyen paraméter nélküli selecten szerintem
-	function productsGet($sql){
-		//lekérdezés végeredménye
-		$result = array();
-		//prepared statement
-		$query = $this->conn->prepare(
-			$sql
-		);
-		//query végrehajtása
-		$query->execute();
-
-		//result tömb benépesítése
-		while($row = $query->fetch()) {
-			array_push($result, $row);
-		}
-
-		//tömb visszaadása
-		return $result;
-	}
-
 	//termékek keresése
 	function searchProducts($keyword) {
 		//eredmény tömb
@@ -139,27 +118,6 @@ class Model{
 
 
 	//--customer TABLE--
-	//user tábla minden adata
-	function getAllUsers() {
-		//eredmény tömb
-		$users = array();
-
-		//prepared statement
-		$query = $this->conn->prepare(
-			"SELECT * FROM customer;"
-		);
-
-		//lekérdezés lefuttatása
-		$query->execute();
-
-		//users tömb benépesítése
-		while($row = $query->fetch()){
-			array_push($users,$row);
-		}
-
-		//tömb visszaadása
-		return $users;
-	}
 
 	//felhasználó lekérése felhasználónév alapján
 	function getUserByName($username){
@@ -168,7 +126,7 @@ class Model{
 
 		//prepared statement
 		$query = $this->conn->prepare(
-			"SELECT * FROM customer
+			"SELECT * FROM users
 			WHERE username = :username;"
 		);
 
@@ -208,32 +166,6 @@ class Model{
 
 		//userid visszaadása
 		return $userid;
-	}
-
-	//ezt a kettőt is meg lehet csinálni generikusra, mert csak egy paramétere van mindkettőnek
-	//pl:
-	function getGeneralUserData($sql, $param1, $param2){
-		//eredmény tömb
-		$users = array();
-
-		//prepared statement
-		$query = $this->conn->prepare(
-			$sql
-		);
-
-		//paraméter hozzáadása
-		$query->bindParam($param1, $param2);
-
-		//lekérdezés lefuttatása
-		$query->execute();
-
-		//users tömb benépesítése
-		while($row = $query->fetch()){
-			array_push($users,$row);
-		}
-
-		//tömb visszaadása
-		return $users;
 	}
 
 	//felhasználónév és jelszó páros egyezőségének vizsgálata
