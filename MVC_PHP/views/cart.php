@@ -40,7 +40,7 @@
                               echo "<td>" . number_format(0.73*$key["price"], 0, ',', ' ') . " Ft</td>";
                               echo "<td>" . number_format($key["price"], 0, ',', ' ') . "</td>";
                               echo "<td>" . $key["quantity"] . "</td>";
-                              echo "<td>".  number_format($key["quantity"] * $key["price"], 0, ',', ' ') . " Ft</td>";
+                              echo "<td>".  $key["quantity"] * $key["price"] . " Ft</td>";
                             echo "</tr>";
 
                           $fullprice += $key["price"] * $key["quantity"];

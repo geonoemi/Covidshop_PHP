@@ -17,7 +17,13 @@ if(isset($_COOKIE["cart"]) && isset($_SESSION["username"])) {
 if(isset($_POST["checkout"])) {
 
   if($address){
+    // szar, de thinking outside the box
+    echo "<script>function bake_cookie(name, value) {
+      let cookie = [name, '=', JSON.stringify(value), '; path=/; max-age=2100; Secure;'].join('');
+      document.cookie = cookie;
 
+    }
+    let cartItems = new Array();</script>";
     $newCookie = array();
     $items = "";
     $price = 0;
@@ -29,18 +35,20 @@ if(isset($_POST["checkout"])) {
             $price = $price + ($key["quantity"] * $key["price"]);
           }
       }else {
-        array_push($newCookie, $key);
+        echo "<script>cartItems.push(" . json_encode($key) . ");</script>";
+
       }
       if($price>0) $MODEL->newOrder($_SESSION["userid"], $items, $price);
-  
+
     }
-  
-    $_COOKIE["cart"] = $newCookie;
+    echo "<script>bake_cookie('cart', cartItems);</script>";
     unset($VIEWDATA["cart"]);
+
 
   }else{
     echo "<span class='error'>Nem adtál meg szállítási címet! Kérlek módosítsd a Profilom lapon.</span>";
   }
 }
+
 include 'views/cart.php';
  ?>

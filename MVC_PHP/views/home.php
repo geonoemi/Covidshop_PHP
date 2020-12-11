@@ -28,7 +28,7 @@
                                 echo "<img alt='" . $products["itemName"] . "' src='";
                                 echo "https://drive.google.com/uc?id=" . $products["picId"];
                                 echo "' alt='" . $products["itemName"] . "'>";
-                                echo "<span class='productPrice'>" . $products["price"] /*number_format($products["price"], 0, ',', ' ')*/ . " Ft</span>";
+                                echo "<span class='productPrice'>" . $products["price"] /*number_format($products["price"], 0, ',', ' ') */. " Ft</span>";
                                 echo "<input id='" . $products["itemName"] ."". $products["id"] . "' type='number' min='1' value='1' max='" . $products["quantity"] . "'>";
                                 echo "<button id='add-to-cart' class='addtocart' data-prodid='" . $products["itemName"] ."". $products["id"] . "' > Kosárba </button>";
                             echo "</div>";
