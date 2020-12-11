@@ -10,6 +10,7 @@
     <script src="./js/addProduct.js"></script>
     <script src="./js/importProducts.js"></script>
     <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="css/interfaceupdate.css">
 </head>
 
 <body>

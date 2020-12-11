@@ -8,9 +8,8 @@
       <title>Produkciók </title>
       <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
       <script src="js/cart.js"></script>
-      <script src="//code.jquery.com/jquery-1.12.4.js"></script>
-  <script src="//code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
       <link rel="stylesheet" href="css/styles.css">
+      <link rel="stylesheet" href="css/interfaceupdate.css">
   </head>
 
   <body>
@@ -54,9 +53,6 @@
         <div class="contact-us-wrapper">
             <a href="mailto:pandemia@citromail.hu">✉️ pandemia@citromail.hu</a>
         </div>
-
-        <script src="js/flytocart.js"></script>
-        
 
   </body>
 

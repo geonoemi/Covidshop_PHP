@@ -41,8 +41,7 @@
             <a href="mailto:pandemia@citromail.hu">✉️ pandemia@citromail.hu</a>
         </div>
 
-        <script src="js/flytocart.js"></script>
-         
+
         
     </body>
 

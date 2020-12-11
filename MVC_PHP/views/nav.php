@@ -41,6 +41,7 @@
 
           <li id="showCart" class="nav-item nav-item-cart">
                 <img src="shopping-cart.svg">
+                <span id="cartNum" style="display: none"></span>
           </li>
 
       </ul>
